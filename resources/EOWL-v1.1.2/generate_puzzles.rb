@@ -29,37 +29,40 @@ ROOTS = WORDS.select { |word| word.chars.uniq.length == target_unique_letter_cou
 
 $stderr.puts(words: WORDS.length, roots: ROOTS.length)
 
-MAXIMUM_WORD_COUNT = 200
+MINIMUM_WORD_COUNT = 50
+MAXIMUM_WORD_COUNT = 100
 def tries_for_root(word)
   anagrams = WORDS.select(&/^(#{word.chars.uniq.join('|')}){#{MINIMUM_LETTER_COUNT},}$/.method(:===))
   word.chars.uniq.map do |island|
     result = { island: island }
     words_including_island = anagrams.select(&island.method(:in?))
     next if words_including_island.count > MAXIMUM_WORD_COUNT
+    next if words_including_island.count < MINIMUM_WORD_COUNT
 
-    result[:word_count] = words_including_island.length
-    # result[:words] = words_including_island
-    result[:trie] = t = Trie.new
-    words_including_island.each do |_sub_word|
-      word.chomp.each_char do |c|
-        t = t[c]
-      end
-      t[WORD] = 1
-    end
+    # result[:word_count] = words_including_island.length
+    result[:words] = words_including_island
+    result[:board] = (word.chars.uniq - [island]).shuffle
+    # result[:trie] = t = Trie.new
+    # words_including_island.each do |_sub_word|
+    #   word.chomp.each_char do |c|
+    #     t = t[c]
+    #   end
+    #   t[WORD] = 1
+    # end
     result
   end.compact
 end
 limit = 10
 puzzles = {}
-ROOTS.each do |word|
+ROOTS.shuffle.each do |word|
   next unless (data = tries_for_root(word)).present?
 
   $stderr.puts(word)
   data.each do |result|
-    $stderr.puts("  [#{result[:island]}]: #{result[:word_count]} words")
+    $stderr.puts("  #{result[:board]}: #{result[:words].length} words")
   end
   puzzles[word] = data
   break if limit && (limit -= 1) <= 0
 end
 
-JSON.dump(puzzles)
+puts JSON.dump(puzzles)
