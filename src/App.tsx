@@ -63,6 +63,18 @@ function App() {
     }
     setRack([]);
   }
+  const lengthProgress: Array<{total: number, found: number, length: number}> = [];
+  puzzle?.words.forEach((word) => {
+    const length = word.length;
+    if (!(length in lengthProgress)) {
+      lengthProgress[length] = {total:0, found:0, length};
+    }
+    lengthProgress[length].total += 1;
+  });
+  words.forEach((word) => {
+    const length = word.length;
+    lengthProgress[length].found += 1;
+  });
   return <Container>
     <Row>
       {Object.entries(puzzles).map(([, group], groupIndex) =>
@@ -76,7 +88,14 @@ function App() {
         }))}
     </Row>
     {puzzle && <Row>
-      <Col><Button onClick={setShuffle.bind(null, shuffle + 1)}>Shuffle</Button></Col>
+      <Col>
+      <Row>
+      <Button onClick={setShuffle.bind(null, shuffle + 1)}>Shuffle</Button>
+      </Row>
+      {
+        lengthProgress.sort().map(({total, found, length}, index) => <Row key={index}><Col xs={1}>{length}</Col><div style={{width: `${100 * found / total}%`, background: "red"}}>{found}</div><div  style={{width: `${100 - (100 * found / total)}`, background: "grey"}}>{total}</div></Row>)
+      }
+      </Col>
       <Board board={board} play={play}/>
       <Col>
         <Row>
