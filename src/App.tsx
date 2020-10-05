@@ -6,18 +6,19 @@ import Row from "react-bootstrap/Row";
 import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
+import useSessionState from "./useSessionState";
 
 function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
-  const [puzzle, setPuzzle] = React.useState<Puzzle>();
-  const [board, setBoard] = React.useState<string[]>([]);
-  const [rack, setRack] = React.useState<string[]>([]);
+  const [puzzle, setPuzzle] = useSessionState<Puzzle | undefined>("puzzle", undefined);
+  const [board, setBoard] = useSessionState<string[]>("board", []);
+  const [rack, setRack] = useSessionState<string[]>("rack", []);
   const [shuffle, setShuffle] = React.useState(0);
-  const [words, setWords] = React.useState<string[]>([]);
-  const once = React.useRef({ done: false });
+  const [words, setWords] = useSessionState<string[]>("words", []);
+  const getPuzzlesOnce = React.useRef({ done: false });
 
-  if (!once.current.done) {
-    once.current.done = true;
+  if (!getPuzzlesOnce.current.done) {
+    getPuzzlesOnce.current.done = true;
     getPuzzles().then(setPuzzles);
   }
 
@@ -25,7 +26,7 @@ function App() {
     if (!puzzle) {
       setBoard([]);
       return;
-    }
+    } 
     const result: string[] = [];
     const src = [...puzzle.board];
     while (src.length > 0) {
@@ -40,6 +41,15 @@ function App() {
   };
 
   React.useEffect(shuffleBoard, [puzzle, shuffle]);
+
+  const skipResetOnRestore = React.useRef({ done: false });
+  React.useEffect(() => {
+    if (!skipResetOnRestore.current.done) {
+      skipResetOnRestore.current.done = true;
+      return;
+    }
+    setWords([]);
+  }, [puzzle, setWords]);
 
   const play = (letter: string) => setRack([...rack, letter]);
   const submit = () => {
