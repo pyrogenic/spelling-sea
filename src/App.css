@@ -25,3 +25,7 @@
     width: 1em;
     font-weight: bolder;
 }
+
+:focus-within {
+    outline: 2px solid #ff000040 !important;
+}

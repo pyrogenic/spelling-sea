@@ -12,36 +12,56 @@ end
 
 WORD = '_'.freeze
 
-WORDS = Set.new
 MINIMUM_LETTER_COUNT = 4
-Pathname('words.txt').readlines.map do |l|
-  l.chomp!
-  next unless l.length >= MINIMUM_LETTER_COUNT
+WORDS_AND_UNIQUE_LETTERS = Pathname('words.txt').readlines.map do |word|
+  word.chomp!
+  next unless word.length >= MINIMUM_LETTER_COUNT
 
-  WORDS << l
-end
+  word.freeze
+  [word, word.chars.uniq]
+end.compact.freeze
+WORDS = Set.new(WORDS_AND_UNIQUE_LETTERS.map(&:first)).freeze
 
-games = {}
-
+# AKA board size
 target_unique_letter_count = 7
 
-ROOTS = WORDS.select { |word| word.chars.uniq.length == target_unique_letter_count }
+# ROOT_FILTER = nil
+# ROOT_FILTER = /^[starline]*$/.freeze
+ROOT_FILTER = /[jqxz]/.freeze
+ROOT_REJECTS = /(ed)$/.freeze
 
-$stderr.puts(words: WORDS.length, roots: ROOTS.length)
+ROOTS = WORDS_AND_UNIQUE_LETTERS.select do |(word, uniq)|
+  next unless uniq.length == target_unique_letter_count
+  next unless ROOT_FILTER && ROOT_FILTER =~ word
+  next if ROOT_REJECTS && ROOT_REJECTS =~ word
 
-MINIMUM_WORD_COUNT = 50
+  true
+end.freeze
+
+$stderr.puts(words: WORDS_AND_UNIQUE_LETTERS.length, roots: ROOTS.length)
+
+MINIMUM_WORD_COUNT = 40
 MAXIMUM_WORD_COUNT = 100
-def tries_for_root(word)
-  anagrams = WORDS.select(&/^(#{word.chars.uniq.join('|')}){#{MINIMUM_LETTER_COUNT},}$/.method(:===))
+
+$counts = Set.new
+
+def tries_for_root(word, uniq)
+  anagram_matcher = /^(#{uniq.join('|')}){#{MINIMUM_LETTER_COUNT},}$/
+  anagrams = WORDS.select { |other_word| anagram_matcher =~ other_word }
   word.chars.uniq.map do |island|
     result = { island: island }
     words_including_island = anagrams.select(&island.method(:in?))
-    next if words_including_island.count > MAXIMUM_WORD_COUNT
-    next if words_including_island.count < MINIMUM_WORD_COUNT
 
-    # result[:word_count] = words_including_island.length
+    wc = words_including_island.count
+    next if wc > MAXIMUM_WORD_COUNT
+    #   $stderr.puts("  #{island} + #{(uniq - [island]).sort.join}: #{words_including_island.length} words#{($counts.add?(wc) && wc == $counts.min) && ' lowest so far'}")
+    #   next
+    # end
+    next if wc < MINIMUM_WORD_COUNT
+
+    result[:count] = words_including_island.length
     result[:words] = words_including_island
-    result[:board] = (word.chars.uniq - [island]).shuffle
+    result[:board] = (uniq - [island]).sort
     # result[:trie] = t = Trie.new
     # words_including_island.each do |_sub_word|
     #   word.chomp.each_char do |c|
@@ -54,12 +74,18 @@ def tries_for_root(word)
 end
 limit = 10
 puzzles = {}
-ROOTS.shuffle.each do |word|
-  next unless (data = tries_for_root(word)).present?
 
+ROOTS.sort.each do |(word, uniq)|
+  unless (data = tries_for_root(word, uniq)).present?
+    $stderr.print('.')
+    $stdout.flush
+    next
+  end
+
+  $stderr.puts
   $stderr.puts(word)
   data.each do |result|
-    $stderr.puts("  #{result[:board]}: #{result[:words].length} words")
+    $stderr.puts("  #{result[:island]}/#{result[:board].join}: #{result[:count]} words")
   end
   puzzles[word] = data
   break if limit && (limit -= 1) <= 0

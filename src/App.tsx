@@ -17,12 +17,48 @@ function App() {
   const [words, setWords] = useSessionState<string[]>("words", []);
   const getPuzzlesOnce = React.useRef({ done: false });
 
+  function onKeyPress(event: KeyboardEvent) {
+    const {key, code} = event;
+    console.log(event);
+    switch (code) {
+      case "Escape":
+        setRack([]);
+        break;
+
+      case "Delete":
+      case "Backspace":
+        const newRack = [...rack];
+        newRack.pop();
+        setRack(newRack);
+        break;
+
+      case "Return":
+      case "Enter":
+        submit();
+        break;
+
+      case "Space":
+        shuffleBoard();
+        break;
+    
+      default:
+        play(key);
+        break;
+    }
+  }
+
+  React.useEffect(()=>{
+    const handler = {handleEvent: onKeyPress};
+    window.addEventListener("keyup", handler);
+    return window.removeEventListener.bind(window, "keyup", handler);
+  })
+
   if (!getPuzzlesOnce.current.done) {
     getPuzzlesOnce.current.done = true;
     getPuzzles().then(setPuzzles);
   }
 
-  const shuffleBoard = () => {
+  function shuffleBoard() {
     if (!puzzle) {
       setBoard([]);
       return;
@@ -38,7 +74,7 @@ function App() {
       }
     }
     setBoard(result);
-  };
+  }
 
   React.useEffect(shuffleBoard, [puzzle, shuffle]);
 
@@ -51,7 +87,12 @@ function App() {
     setWords([]);
   }, [puzzle, setWords]);
 
-  const play = (letter: string) => setRack([...rack, letter]);
+  function play(letter: string) {
+    if (board.includes(letter)) {
+      setRack([...rack, letter]);
+      return;
+    }
+  }
   const submit = () => {
     const word = rack.join("");
     if (words.includes(word)) {
@@ -135,7 +176,7 @@ function Board({board, play}:{board: string[], play: (letter: string) => void}) 
 }
 
 function Cell({ type, play, letter }: { type: "sea" | "island", play(letter: string): void, letter: string }) {
-  return <Col className={type} key={letter} onClick={play.bind(null, letter)}>
+  return <Col className={type} key={letter} onClick={play.bind(null, letter)} onKeyUp={console.log}>
     {letter}
   </Col>;
 
