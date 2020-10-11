@@ -30,6 +30,15 @@
     line-height: 1;
 }
 
+.score {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 900;
+}
+
+.globetrotter {
+    font-weight: bold;
+}
+
 .board .col {
     cursor: pointer;
 }

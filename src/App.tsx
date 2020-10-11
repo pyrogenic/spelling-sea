@@ -7,7 +7,7 @@ import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
 import useSessionState from "./useSessionState";
-import _ from "lodash";
+import _, { isArray } from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 
 type Order = "found" | "alpha" | "length";
@@ -210,7 +210,14 @@ function App() {
           <Col xs={"auto"} className="flex-fill" />
         </Row>
         <Row>
-          {orderedWords?.()?.map((word) => <Col xs={4} key={word}>{word}</Col>)}
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"} className="score">
+            {score(words)} points
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+        <Row>
+          {orderedWords?.()?.map((word) => <Col xs={4} key={word} className={globetrotter(word) ? "globetrotter" : undefined}>{word}</Col>)}
         </Row>
       </Col>
     </Row>}
@@ -246,4 +253,20 @@ function Cell({ type, play, letter }: { type: "sea" | "island", play(letter: str
 
 }
 
+function score(words: string | string[]): number {
+  if (isArray(words)) {
+    return _.sumBy(words, score);
+  }
+  if (words.length <= 4) {
+    return 1;
+  }
+  return words.length - 3 + (globetrotter(words) ? 7 : 0);
+}
+
+function globetrotter(words: string) {
+  const letters = _.uniq(words);
+  return letters.length === 7;
+}
+
 export default App;
+
