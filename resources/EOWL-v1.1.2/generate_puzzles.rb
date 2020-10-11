@@ -10,10 +10,12 @@ class Trie < Hash
   end
 end
 
+src = ARGV.shift || 'words.txt'
+
 WORD = '_'.freeze
 
 MINIMUM_LETTER_COUNT = 4
-WORDS_AND_UNIQUE_LETTERS = Pathname('words.txt').readlines.map do |word|
+WORDS_AND_UNIQUE_LETTERS = Pathname(src).readlines.map do |word|
   word.chomp!
   next unless word.length >= MINIMUM_LETTER_COUNT
 
@@ -25,14 +27,14 @@ WORDS = Set.new(WORDS_AND_UNIQUE_LETTERS.map(&:first)).freeze
 # AKA board size
 target_unique_letter_count = 7
 
-# ROOT_FILTER = nil
+ROOT_FILTER = nil
 # ROOT_FILTER = /^[starline]*$/.freeze
-ROOT_FILTER = /[jqxz]/.freeze
+# ROOT_FILTER = /[jqxz]/.freeze
 ROOT_REJECTS = /(ed)$/.freeze
 
 ROOTS = WORDS_AND_UNIQUE_LETTERS.select do |(word, uniq)|
   next unless uniq.length == target_unique_letter_count
-  next unless ROOT_FILTER && ROOT_FILTER =~ word
+  next unless !ROOT_FILTER || ROOT_FILTER =~ word
   next if ROOT_REJECTS && ROOT_REJECTS =~ word
 
   true
@@ -72,10 +74,10 @@ def tries_for_root(word, uniq)
     result
   end.compact
 end
-limit = 10
+limit = 100;
 puzzles = {}
 
-ROOTS.sort.each do |(word, uniq)|
+ROOTS.shuffle.each do |(word, uniq)|
   unless (data = tries_for_root(word, uniq)).present?
     $stderr.print('.')
     $stdout.flush
@@ -91,4 +93,4 @@ ROOTS.sort.each do |(word, uniq)|
   break if limit && (limit -= 1) <= 0
 end
 
-puts JSON.dump(puzzles)
+puts JSON.pretty_generate(puzzles)

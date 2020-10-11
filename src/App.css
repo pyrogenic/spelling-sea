@@ -1,4 +1,5 @@
-/* .col {
+/*
+.col {
     border: 1px red;
 }
 .col-auto {
@@ -6,7 +7,16 @@
 }
 .row {
     border: 1px green dashed;
-} */
+}
+
+:focus-within {
+    outline: 2px solid #ff000040 !important;
+}
+*/
+
+div {
+    white-space: nowrap;
+}
 
 .rack-letter {
     font-size: 6em;
@@ -30,6 +40,22 @@
     line-height: 1;
 }
 
+.rank-future {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+.rank-current {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 900;
+}
+
+.rank-past {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    color: #00000080;
+}
+
 .score {
     font-family: 'Quicksand', sans-serif;
     font-weight: 900;
@@ -49,18 +75,14 @@
 }
 
 .island {
-    /* background-color: rgba(209, 152, 103, 0.473);
-    border-radius: 100%; */
+    background-color: rgba(224, 196, 170, 0.692);    
+    border-radius: 100%;
     /* height: 1em;
     width: 1em; */
     font-size: 110%;
     line-height: 90%;
     font-weight: 900;
-    color: rgb(255, 209, 169)
-}
-
-:focus-within {
-    outline: 2px solid #ff000040 !important;
+    color: rgb(68, 42, 18)
 }
 
 .marker-found {
@@ -71,4 +93,13 @@
 }
 .marker-blank {
     background-color: aliceblue;
+}
+
+.board-row-1 > .col:nth-of-type(1),
+.board-row-1 > .col:nth-of-type(3)  {
+    transform: translateY(33%);
+}
+.board-row-3 > .col:nth-of-type(1),
+.board-row-3 > .col:nth-of-type(3)  {
+    transform: translateY(-33%);
 }

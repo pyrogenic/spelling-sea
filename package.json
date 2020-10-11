@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "make": "bundle exec ruby resources/EOWL-v1.1.2/generate_puzzles.rb resources/EOWL-v1.1.2/words.txt > public/puzzles.json"
   },
   "eslintConfig": {
     "extends": "react-app"

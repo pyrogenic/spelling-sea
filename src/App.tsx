@@ -9,9 +9,15 @@ import "./App.css";
 import useSessionState from "./useSessionState";
 import _, { isArray } from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
+
+type Progress = "overall" | "length" | "distance";
+const PROGRESS: Progress[] = ["overall", "length", "distance"];
+
 function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
   const [puzzle, setPuzzle] = useSessionState<Puzzle | undefined>("puzzle", undefined);
@@ -20,6 +26,7 @@ function App() {
   const [shuffle, setShuffle] = React.useState(0);
   const [words, setWords] = useSessionState<string[]>("words", []);
   const [order, setOrder] = useSessionState<Order>("order", "found");
+  const [progressView, setProgressView] = useSessionState<Progress>("progressView", "overall");
 
   const getPuzzlesOnce = React.useRef({ done: false });
 
@@ -33,9 +40,7 @@ function App() {
 
       case "Delete":
       case "Backspace":
-        const newRack = [...rack];
-        newRack.pop();
-        setRack(newRack);
+        backspace();
         break;
 
       case "Return":
@@ -51,6 +56,11 @@ function App() {
         play(key);
         break;
     }
+  }
+  function backspace() {
+    const newRack = [...rack];
+    newRack.pop();
+    setRack(newRack);
   }
 
   React.useEffect(() => {
@@ -122,35 +132,19 @@ function App() {
     }
     setRack([]);
   }
-  const lengthProgress: Array<{ total: number, found: number, length: number }> = [];
-  puzzle?.words.forEach((word) => {
-    const length = word.length;
-    if (!(length in lengthProgress)) {
-      lengthProgress[length] = { total: 0, found: 0, length };
-    }
-    lengthProgress[length].total += 1;
-  });
-  words.forEach((word) => {
-    const length = word.length;
-    lengthProgress[length].found += 1;
-  });
-
-  const mostWords = _.max(_.map(lengthProgress, "total")) ?? 0;
-  const cols: number[] = [];
-  for (let index = 0; index < mostWords; index++) {
-    cols[index] = index;
-  }
   return <Container>
     <Row>
+      <DropdownButton title="Choose a Puzzle">
       {Object.entries(puzzles).map(([, group], groupIndex) =>
         group.map((e) => {
           const { board, island, words } = e;
-          return <Col md={2} className="m-1" key={`${groupIndex}.${island}`}>
-            <Button variant="outline-primary" onClick={setPuzzle.bind(null, e)}><code>{board.join("").toUpperCase()}</code></Button>
-            &nbsp;
-            <small>({words.length} words)</small>
-          </Col>
+          return <Dropdown.Item
+            key={`${groupIndex}.${island}`}
+            onSelect={setPuzzle.bind(null, e)}>
+              {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
+          </Dropdown.Item>;
         }))}
+        </DropdownButton>
     </Row>
     <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill" />
@@ -163,7 +157,32 @@ function App() {
       </Col>
       <Col xs={"auto"} className="flex-fill" />
     </Row>
-    <Row className="mb-2">
+    {puzzle && <Row className="mb-2">
+      <Col>
+      <Row>
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            <ButtonGroup size="sm">
+              {PROGRESS.map((progressVal) => <Button key={progressVal} variant={progressView === progressVal ? "primary" : "outline-primary"} onClick={setProgressView.bind(null, progressVal)}>{progressVal}</Button>)}
+            </ButtonGroup>
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+<Row>
+<Col xs={"auto"} className="flex-fill" />
+<Col xs={"auto"}>
+        {progressView === "length" ? <LengthProgress /> : progressView === "overall" ? <OverallProgress /> : <GlobetrotterProgress />}
+        </Col>
+        <Col xs={"auto"} className="flex-fill" />
+</Row>
+      </Col>
+      <Col>
+        <Row className="mb-2">
+          <Col xs={"auto"} className="flex-fill" />
+          <Board board={board} play={play} />
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+        <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill" />
       <Col xs={"auto"}>
         <Row>
@@ -174,6 +193,9 @@ function App() {
             <Button variant="secondary" onClick={setShuffle.bind(null, shuffle + 1)}>
               Shuffle
             </Button>
+            <Button variant="warning" disabled={rack.length === 0} onClick={backspace}>
+              Delete
+            </Button>
             <Button variant="primary" disabled={rack.length < 4 || !puzzle || !rack.includes(puzzle.island)} onClick={submit}>
               Play
             </Button>
@@ -182,22 +204,6 @@ function App() {
       </Col>
       <Col xs={"auto"} className="flex-fill" />
     </Row>
-    {puzzle && <Row className="mb-2">
-      <Col>
-        {
-          lengthProgress.sort().map(({ total, found, length }, index) =>
-            <Row key={index}>
-              <Col xs={1}>{length}</Col>
-              {cols.map((index) => <Col key={index} className={index < found ? "marker-found" : index < total ? "marker-unfound" : "marker-blank"} />)}
-            </Row>)
-        }
-      </Col>
-      <Col>
-        <Row>
-          <Col xs={"auto"} className="flex-fill" />
-          <Board board={board} play={play} />
-          <Col xs={"auto"} className="flex-fill" />
-        </Row>
       </Col>
       <Col>
         <Row>
@@ -222,23 +228,93 @@ function App() {
       </Col>
     </Row>}
   </Container>;
+
+  function OverallProgress() {
+    if (!puzzle) {
+      return null;
+    }
+    const ranks = [
+      "Matey",
+      "Swabby",
+      "Ensign",
+      "Coxwain",
+      "First Mate",
+      "Captain",
+      "Commodore",
+      "Admiral",
+      "Enlightened",
+    ];
+    const highScore = score(puzzle.words);
+    const playerScore = score(words);
+    // const basicScore = <>{playerScore} / {highScore}</>;
+    
+    let remain = highScore;
+    return <>
+    {ranks.reverse().map((rank, index) => {
+      const to = remain;
+      const from = Math.floor(remain * (2/3));
+      remain = from - 1;
+      const playerRank = (from <= playerScore && playerScore <= to);
+      const achieved = from < playerScore;
+      return <Row className={playerRank ? "rank-current" : achieved ? "rank-past" : "rank-future"}>
+        <Col>{from}</Col>
+        <Col>{playerRank ? playerScore : ""}</Col>
+        <Col>{to}</Col>
+        <Col>{rank}</Col>
+      </Row>
+    })}
+    {/* <Row className="score" style={{textAlign: "center"}}>
+      {basicScore}
+    </Row> */}
+    </>;
+  }
+
+  function GlobetrotterProgress() {
+    return puzzle ? <>{words.filter(globetrotter).length} / {puzzle.words.filter(globetrotter).length}</> : null;
+  }
+
+  function LengthProgress() {
+    const lengthProgress: Array<{ total: number, found: number, length: number }> = [];
+    puzzle?.words.forEach((word) => {
+      const length = word.length;
+      if (!(length in lengthProgress)) {
+        lengthProgress[length] = { total: 0, found: 0, length };
+      }
+      lengthProgress[length].total += 1;
+    });
+    words.forEach((word) => {
+      const length = word.length;
+      lengthProgress[length].found += 1;
+    });
+
+    const mostWords = _.max(_.map(lengthProgress, "total")) ?? 0;
+    const cols: number[] = [];
+    for (let index = 0; index < mostWords; index++) {
+      cols[index] = index;
+    }
+
+    return <>{lengthProgress.sort().map(({ total, found, length }, index) => <Row key={index}>
+      <Col xs={1}>{length}</Col>
+      {cols.map((index) => <Col key={index} className={index < found ? "marker-found" : index < total ? "marker-unfound" : "marker-blank"} />)}
+    </Row>)}</>;
+  }
 }
 
 function Board({ board, play }: { board: string[], play: (letter: string) => void }) {
   return <Col xs={"auto"} className="board">
-    <Row>
+    <Row className="board-row-1">
       <Cell type="sea" letter={board[0]} play={play} />
       <Cell type="sea" letter={board[1]} play={play} />
       <Cell type="sea" letter={board[2]} play={play} />
     </Row>
-    <Row>
+    <Row className="board-row-2">
       <Col className="sea">
       </Col>
       <Cell type="island" letter={board[3]} play={play} />
       <Col className="sea">
       </Col>
     </Row>
-    <Row>
+    <Row className="board-row-3">
       <Cell type="sea" letter={board[4]} play={play} />
       <Cell type="sea" letter={board[5]} play={play} />
       <Cell type="sea" letter={board[6]} play={play} />
