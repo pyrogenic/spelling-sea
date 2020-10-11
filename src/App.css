@@ -62,7 +62,21 @@ div {
 }
 
 .globetrotter {
-    font-weight: bold;
+    font-weight: 900;
+}
+
+.already-played {
+    font-weight: 900;
+    color: red;
+}
+
+.matches-prefix {
+    font-weight: 900;
+}
+
+.does-not-match-prefix {
+    font-weight: 300;
+    color: #00000080;
 }
 
 .board .col {

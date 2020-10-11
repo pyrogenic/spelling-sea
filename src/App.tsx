@@ -11,6 +11,7 @@ import _, { isArray } from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import {FiCopy, FiRefreshCw, FiShuffle, FiDelete} from "react-icons/fi";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
@@ -52,14 +53,24 @@ function App() {
         shuffleBoard();
         break;
 
+      // case "Space":
+      //   shuffleBoard();
+      //   break;
+      
       default:
         play(key);
         break;
     }
   }
+  
   function backspace() {
     const newRack = [...rack];
     newRack.pop();
+    setRack(newRack);
+  }
+  
+  function ditto() {
+    const newRack = [..._.last(words)!];
     setRack(newRack);
   }
 
@@ -132,19 +143,33 @@ function App() {
     }
     setRack([]);
   }
+
+  let noPlayReason: string | undefined;
+  if (!puzzle) {
+    noPlayReason = "No Puzzle";
+  } else {
+    if (rack.length < 4) {
+      noPlayReason = "Too Short";
+    } else if (!rack.includes(puzzle.island)) {
+      noPlayReason = `No ${puzzle.island.toUpperCase()}`;
+    } else if (words.includes(rack.join(""))) {
+      noPlayReason = "Already Played";
+    }
+  }
+
   return <Container>
     <Row>
       <DropdownButton title="Choose a Puzzle">
-      {Object.entries(puzzles).map(([, group], groupIndex) =>
-        group.map((e) => {
-          const { board, island, words } = e;
-          return <Dropdown.Item
-            key={`${groupIndex}.${island}`}
-            onSelect={setPuzzle.bind(null, e)}>
+        {Object.entries(puzzles).map(([, group], groupIndex) =>
+          group.map((e) => {
+            const { board, island, words } = e;
+            return <Dropdown.Item
+              key={`${groupIndex}.${island}`}
+              onSelect={setPuzzle.bind(null, e)}>
               {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
           </Dropdown.Item>;
-        }))}
-        </DropdownButton>
+          }))}
+      </DropdownButton>
     </Row>
     <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill" />
@@ -158,8 +183,8 @@ function App() {
       <Col xs={"auto"} className="flex-fill" />
     </Row>
     {puzzle && <Row className="mb-2">
-      <Col>
-      <Row>
+      <Col xs={6}>
+        <Row>
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"}>
             <ButtonGroup size="sm">
@@ -168,13 +193,13 @@ function App() {
           </Col>
           <Col xs={"auto"} className="flex-fill" />
         </Row>
-<Row>
-<Col xs={"auto"} className="flex-fill" />
-<Col xs={"auto"}>
-        {progressView === "length" ? <LengthProgress /> : progressView === "overall" ? <OverallProgress /> : <GlobetrotterProgress />}
-        </Col>
-        <Col xs={"auto"} className="flex-fill" />
-</Row>
+        <Row>
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            {progressView === "length" ? <LengthProgress /> : progressView === "overall" ? <OverallProgress /> : <GlobetrotterProgress />}
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
       </Col>
       <Col>
         <Row className="mb-2">
@@ -183,29 +208,41 @@ function App() {
           <Col xs={"auto"} className="flex-fill" />
         </Row>
         <Row className="mb-2">
-      <Col xs={"auto"} className="flex-fill" />
-      <Col xs={"auto"}>
-        <Row>
-          <ButtonGroup>
-            <Button variant="warning" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
-              Reset
-            </Button>
-            <Button variant="secondary" onClick={setShuffle.bind(null, shuffle + 1)}>
-              Shuffle
-            </Button>
-            <Button variant="warning" disabled={rack.length === 0} onClick={backspace}>
-              Delete
-            </Button>
-            <Button variant="primary" disabled={rack.length < 4 || !puzzle || !rack.includes(puzzle.island)} onClick={submit}>
-              Play
-            </Button>
-          </ButtonGroup>
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            <Row className="mb-2 justify-content-center">
+              <Button variant="primary" disabled={noPlayReason !== undefined} onClick={submit}>
+                {noPlayReason ?? "Play"}
+              </Button>
+            </Row>
+            <Row>
+              <Col xs="auto" className="flex-fill">
+              <Button variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
+                <FiShuffle title="Shuffle"/>
+              </Button>
+              </Col>
+              <ButtonGroup as={Col} xs="auto">
+                <Button variant="light" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
+                  <FiRefreshCw title="Reset"/>
+                </Button>
+                <Button variant="light" disabled={rack.length === 0} onClick={backspace}>
+                  <FiDelete title="Delete"/>
+                </Button>
+                <Button variant="light" disabled={words.length === 0} onClick={ditto}>
+                  <FiCopy title="Ditto"/>
+                </Button>
+              </ButtonGroup>
+              <Col xs="auto" className="flex-fill" style={{opacity:0}}>
+              <Button disabled={true}>
+                <FiShuffle/>
+              </Button>
+              </Col>
+            </Row>
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
         </Row>
       </Col>
-      <Col xs={"auto"} className="flex-fill" />
-    </Row>
-      </Col>
-      <Col>
+      <Col xs={"auto"}>
         <Row>
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"}>
@@ -215,15 +252,32 @@ function App() {
           </Col>
           <Col xs={"auto"} className="flex-fill" />
         </Row>
-        <Row>
+        {/* plain score display
+         <Row>
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"} className="score">
             {score(words)} points
           </Col>
           <Col xs={"auto"} className="flex-fill" />
-        </Row>
+        </Row> 
+        */}
         <Row>
-          {orderedWords?.()?.map((word) => <Col xs={4} key={word} className={globetrotter(word) ? "globetrotter" : undefined}>{word}</Col>)}
+          {orderedWords?.()?.map((word) => {
+            let className = globetrotter(word) ? "globetrotter" : undefined;
+            if (rack.length > 0) {
+              const rackWord = rack.join("");
+              if (word.startsWith(rackWord)) {
+                if (word === rackWord) {
+                  className = "already-played";
+                } else {
+                  className = "matches-prefix";
+                }
+              } else {
+                className = "does-not-match-prefix";
+              }
+            }
+            return <Col md={1} key={word} className={className}>{word}</Col>;
+          })}
         </Row>
       </Col>
     </Row>}
@@ -247,23 +301,23 @@ function App() {
     const highScore = score(puzzle.words);
     const playerScore = score(words);
     // const basicScore = <>{playerScore} / {highScore}</>;
-    
+
     let remain = highScore;
     return <>
-    {ranks.reverse().map((rank, index) => {
-      const to = remain;
-      const from = Math.floor(remain * (2/3));
-      remain = from - 1;
-      const playerRank = (from <= playerScore && playerScore <= to);
-      const achieved = from < playerScore;
-      return <Row className={playerRank ? "rank-current" : achieved ? "rank-past" : "rank-future"}>
-        <Col>{from}</Col>
-        <Col>{playerRank ? playerScore : ""}</Col>
-        <Col>{to}</Col>
-        <Col>{rank}</Col>
-      </Row>
-    })}
-    {/* <Row className="score" style={{textAlign: "center"}}>
+      {ranks.reverse().map((rank, index) => {
+        const to = remain;
+        const from = Math.floor(remain * (2 / 3));
+        remain = from - 1;
+        const playerRank = (from <= playerScore && playerScore <= to);
+        const achieved = from < playerScore;
+        return <Row className={playerRank ? "rank-current" : achieved ? "rank-past" : "rank-future"}>
+          <Col>{from}</Col>
+          <Col>{playerRank ? playerScore : ""}</Col>
+          <Col>{to}</Col>
+          <Col>{rank}</Col>
+        </Row>
+      })}
+      {/* <Row className="score" style={{textAlign: "center"}}>
       {basicScore}
     </Row> */}
     </>;
