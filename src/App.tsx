@@ -7,7 +7,11 @@ import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
 import useSessionState from "./useSessionState";
+import _ from "lodash";
+import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 
+type Order = "found" | "alpha" | "length";
+const ORDERS: Order[] = ["found", "alpha", "length"];
 function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
   const [puzzle, setPuzzle] = useSessionState<Puzzle | undefined>("puzzle", undefined);
@@ -15,10 +19,12 @@ function App() {
   const [rack, setRack] = useSessionState<string[]>("rack", []);
   const [shuffle, setShuffle] = React.useState(0);
   const [words, setWords] = useSessionState<string[]>("words", []);
+  const [order, setOrder] = useSessionState<Order>("order", "found");
+
   const getPuzzlesOnce = React.useRef({ done: false });
 
   function onKeyPress(event: KeyboardEvent) {
-    const {key, code} = event;
+    const { key, code } = event;
     console.log(event);
     switch (code) {
       case "Escape":
@@ -40,15 +46,15 @@ function App() {
       case "Space":
         shuffleBoard();
         break;
-    
+
       default:
         play(key);
         break;
     }
   }
 
-  React.useEffect(()=>{
-    const handler = {handleEvent: onKeyPress};
+  React.useEffect(() => {
+    const handler = { handleEvent: onKeyPress };
     window.addEventListener("keyup", handler);
     return window.removeEventListener.bind(window, "keyup", handler);
   })
@@ -62,7 +68,7 @@ function App() {
     if (!puzzle) {
       setBoard([]);
       return;
-    } 
+    }
     const result: string[] = [];
     const src = [...puzzle.board];
     while (src.length > 0) {
@@ -87,6 +93,18 @@ function App() {
     setWords([]);
   }, [puzzle, setWords]);
 
+  const orderedWords = React.useCallback(() => {
+    switch (order) {
+      case "found":
+        return words;
+      case "alpha":
+        return [...words].sort();
+      // case "length":
+      //   const groups = Object.entries(_.groupBy([...words].sort(), "length"));
+      //   return _.map(groups.sort(), "", 
+    }
+  }, [words, order]);
+
   function play(letter: string) {
     if (board.includes(letter)) {
       setRack([...rack, letter]);
@@ -104,11 +122,11 @@ function App() {
     }
     setRack([]);
   }
-  const lengthProgress: Array<{total: number, found: number, length: number}> = [];
+  const lengthProgress: Array<{ total: number, found: number, length: number }> = [];
   puzzle?.words.forEach((word) => {
     const length = word.length;
     if (!(length in lengthProgress)) {
-      lengthProgress[length] = {total:0, found:0, length};
+      lengthProgress[length] = { total: 0, found: 0, length };
     }
     lengthProgress[length].total += 1;
   });
@@ -116,6 +134,12 @@ function App() {
     const length = word.length;
     lengthProgress[length].found += 1;
   });
+
+  const mostWords = _.max(_.map(lengthProgress, "total")) ?? 0;
+  const cols: number[] = [];
+  for (let index = 0; index < mostWords; index++) {
+    cols[index] = index;
+  }
   return <Container>
     <Row>
       {Object.entries(puzzles).map(([, group], groupIndex) =>
@@ -128,32 +152,72 @@ function App() {
           </Col>
         }))}
     </Row>
-    {puzzle && <Row>
-      <Col>
-      <Row>
-      <Button onClick={setShuffle.bind(null, shuffle + 1)}>Shuffle</Button>
-      </Row>
-      {
-        lengthProgress.sort().map(({total, found, length}, index) => <Row key={index}><Col xs={1}>{length}</Col><div style={{width: `${100 * found / total}%`, background: "red"}}>{found}</div><div  style={{width: `${100 - (100 * found / total)}`, background: "grey"}}>{total}</div></Row>)
-      }
+    <Row className="mb-2">
+      <Col xs={"auto"} className="flex-fill" />
+      <Col xs={"auto"}>
+        <Row>
+          <span className="rack-letter">&nbsp;</span>
+          {rack.map((letter) => <span className="rack-letter">{letter}</span>)}
+          <span className="rack-letter">&nbsp;</span>
+        </Row>
       </Col>
-      <Board board={board} play={play}/>
+      <Col xs={"auto"} className="flex-fill" />
+    </Row>
+    <Row className="mb-2">
+      <Col xs={"auto"} className="flex-fill" />
+      <Col xs={"auto"}>
+        <Row>
+          <ButtonGroup>
+            <Button variant="warning" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
+              Reset
+            </Button>
+            <Button variant="secondary" onClick={setShuffle.bind(null, shuffle + 1)}>
+              Shuffle
+            </Button>
+            <Button variant="primary" disabled={rack.length < 4 || !puzzle || !rack.includes(puzzle.island)} onClick={submit}>
+              Play
+            </Button>
+          </ButtonGroup>
+        </Row>
+      </Col>
+      <Col xs={"auto"} className="flex-fill" />
+    </Row>
+    {puzzle && <Row className="mb-2">
+      <Col>
+        {
+          lengthProgress.sort().map(({ total, found, length }, index) =>
+            <Row key={index}>
+              <Col xs={1}>{length}</Col>
+              {cols.map((index) => <Col key={index} className={index < found ? "marker-found" : index < total ? "marker-unfound" : "marker-blank"} />)}
+            </Row>)
+        }
+      </Col>
       <Col>
         <Row>
-          <Button disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
-            Reset
-        </Button>
-          <Button disabled={rack.length < 4 || !rack.includes(puzzle.island)} onClick={submit}>
-            Play {rack.join("")}
-        </Button>
+          <Col xs={"auto"} className="flex-fill" />
+          <Board board={board} play={play} />
+          <Col xs={"auto"} className="flex-fill" />
         </Row>
-        {words.map((word) => <Row key={word}>{word}</Row>)}
+      </Col>
+      <Col>
+        <Row>
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            <ButtonGroup size="sm">
+              {ORDERS.map((orderVal) => <Button key={orderVal} variant={order === orderVal ? "primary" : "outline-primary"} onClick={setOrder.bind(null, orderVal)}>{orderVal}</Button>)}
+            </ButtonGroup>
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+        <Row>
+          {orderedWords?.()?.map((word) => <Col xs={4} key={word}>{word}</Col>)}
+        </Row>
       </Col>
     </Row>}
   </Container>;
 }
 
-function Board({board, play}:{board: string[], play: (letter: string) => void}) {
+function Board({ board, play }: { board: string[], play: (letter: string) => void }) {
   return <Col xs={"auto"} className="board">
     <Row>
       <Cell type="sea" letter={board[0]} play={play} />

@@ -1,10 +1,31 @@
-.board {
-    border: 1px solid black;
-    border-radius: 3rem;
-    background-color: aqua;
-    /* margin: 1em; */
+/* .col {
+    border: 1px red;
+}
+.col-auto {
+    border: 1px red dashed;
+}
+.row {
+    border: 1px green dashed;
+} */
+
+.rack-letter {
     font-size: 6em;
     text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 900;
+}
+
+.board {
+    border: 1px solid black;
+    border-radius: 10%;
+    background: url("isle.jpg");
+    background-size: contain;
+    /* margin: 1em; */
+    font-size: 6em;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
     text-align: center;
     line-height: 1;
 }
@@ -19,13 +40,26 @@
 }
 
 .island {
-    background-color: sandybrown;
-    border-radius: 2rem;
-    height: 1em;
-    width: 1em;
-    font-weight: bolder;
+    /* background-color: rgba(209, 152, 103, 0.473);
+    border-radius: 100%; */
+    /* height: 1em;
+    width: 1em; */
+    font-size: 110%;
+    line-height: 90%;
+    font-weight: 900;
+    color: rgb(255, 209, 169)
 }
 
 :focus-within {
     outline: 2px solid #ff000040 !important;
+}
+
+.marker-found {
+    background-color: green;
+}
+.marker-unfound {
+    background-color: red;
+}
+.marker-blank {
+    background-color: aliceblue;
 }
