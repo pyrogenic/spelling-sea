@@ -27,12 +27,14 @@ function App() {
   const [puzzle, setPuzzle, initPuzzle] = useSessionState<Puzzle | undefined>(["puzzle"], undefined);
   const [visitedPuzzles, setVisitedPuzzles, initVisitedPuzzles] = useSessionState<PuzzleId[]>(["visitedPuzzleIds"], []);
   const getPuzzlesOnce = React.useRef({ done: false });
-  const once = React.useRef({ firstRun: false });
+  const once = React.useRef({ firstRun: true });
+  
   if (once.current.firstRun) {
     once.current.firstRun = false;
     initPuzzle();
     initVisitedPuzzles();
   }
+
   React.useEffect(() => {
     if (puzzle) {
       const id: PuzzleId = puzzleId(puzzle);
@@ -122,7 +124,11 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
 
       case "Return":
       case "Enter":
-        submit();
+        if (rack.length) {
+          submit();
+        } else {
+          ditto();
+        }
         break;
 
       case "Space":
@@ -200,7 +206,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
     } else if (puzzle?.words.includes(word)) {
       setWords([...words, word]);
     } else {
-      alert("Not a word!");
+      alert(noPlayReason ?? "Not a word!");
     }
     setRack([]);
   };
@@ -220,13 +226,13 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
     }
   }
 
-  return <Container>
+  return <Container onMouseDown={(e: any) => e.preventDefault()}>
     <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill" />
       <Col xs={"auto"}>
         <Row>
           <span className="rack-letter">&nbsp;</span>
-          {rack.map((letter) => <span className="rack-letter">{letter}</span>)}
+          {rack.map((letter) => <span className={`rack-letter ${letter === puzzle.island ? "rack-letter-island" : ""}`}>{letter}</span>)}
           <span className="rack-letter">&nbsp;</span>
         </Row>
       </Col>
@@ -320,7 +326,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
 
 
       <Col md={4}>
-        <Row>
+        <Row className="mb-2">
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"}>
             <ButtonGroup size="sm">
