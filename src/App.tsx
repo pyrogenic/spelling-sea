@@ -7,11 +7,11 @@ import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
 import useSessionState from "./useSessionState";
-import _, { isArray } from "lodash";
+import _ from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import {FiCopy, FiRefreshCw, FiShuffle, FiDelete} from "react-icons/fi";
+import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
@@ -19,17 +19,93 @@ const ORDERS: Order[] = ["found", "alpha", "length"];
 type Progress = "overall" | "length" | "distance";
 const PROGRESS: Progress[] = ["overall", "length", "distance"];
 
+//type PuzzleId = [root: string, island: string];
+type PuzzleId = string;
+
 function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
-  const [puzzle, setPuzzle] = useSessionState<Puzzle | undefined>("puzzle", undefined);
-  const [board, setBoard] = useSessionState<string[]>("board", []);
-  const [rack, setRack] = useSessionState<string[]>("rack", []);
-  const [shuffle, setShuffle] = React.useState(0);
-  const [words, setWords] = useSessionState<string[]>("words", []);
-  const [order, setOrder] = useSessionState<Order>("order", "found");
-  const [progressView, setProgressView] = useSessionState<Progress>("progressView", "overall");
-
+  const [puzzle, setPuzzle, initPuzzle] = useSessionState<Puzzle | undefined>(["puzzle"], undefined);
+  const [visitedPuzzles, setVisitedPuzzles, initVisitedPuzzles] = useSessionState<PuzzleId[]>(["visitedPuzzleIds"], []);
   const getPuzzlesOnce = React.useRef({ done: false });
+  const once = React.useRef({ firstRun: false });
+  if (once.current.firstRun) {
+    once.current.firstRun = false;
+    initPuzzle();
+    initVisitedPuzzles();
+  }
+  React.useEffect(() => {
+    if (puzzle) {
+      const id: PuzzleId = puzzleId(puzzle);
+      if (!visitedPuzzles.includes(id)) {
+        setVisitedPuzzles([...visitedPuzzles, id]);
+      }
+    }
+  }, [puzzle, visitedPuzzles, setVisitedPuzzles]);
+
+  if (!getPuzzlesOnce.current.done) {
+    getPuzzlesOnce.current.done = true;
+    getPuzzles().then(setPuzzles);
+  }
+  const allPuzzles = React.useCallback(() => puzzles ? _.flatten(Object.values(puzzles)) : [], [puzzles]);
+  function nextPuzzle() {
+    if (puzzle) {
+      const puzzleIndex = visitedPuzzles.indexOf(puzzleId(puzzle));
+      if (puzzleIndex > 0 && puzzleIndex < visitedPuzzles.length - 1) {
+        const id = visitedPuzzles[puzzleIndex + 1];
+        const found = allPuzzles().find((p) => id === puzzleId(p));
+        return setPuzzle(found);
+      }
+    }
+    setPuzzle(_.shuffle(allPuzzles()).pop());
+  }
+  function prevPuzzle() {
+    if (puzzle) {
+      const puzzleIndex = visitedPuzzles.indexOf(puzzleId(puzzle));
+      if (puzzleIndex > 0) {
+        const id = visitedPuzzles[puzzleIndex - 1];
+        const found = allPuzzles().find((p) => id === puzzleId(p));
+        return setPuzzle(found);
+      }
+    }
+    setPuzzle(_.shuffle(allPuzzles()).pop());
+  }
+
+  return <Container>
+    {puzzle && <PuzzleComponent puzzle={puzzle} prevPuzzle={prevPuzzle} nextPuzzle={nextPuzzle} />}
+    <hr />
+    <Row>
+      <DropdownButton title="Choose a Puzzle">
+        {Object.entries(puzzles).map(([, group], groupIndex) =>
+          group.map((e) => {
+            const { board, island, words } = e;
+            return <Dropdown.Item
+              key={`${groupIndex}.${island}`}
+              onSelect={setPuzzle.bind(null, e)}>
+              {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
+          </Dropdown.Item>;
+          }))}
+      </DropdownButton>
+    </Row>
+  </Container>;
+}
+
+function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; prevPuzzle: () => void; nextPuzzle: () => void; }) {
+  const id = puzzleId(puzzle);
+  const [board, setBoard, initBoard] = useSessionState<string[]>([id, "board"], []);
+  const [rack, setRack, initRack] = useSessionState<string[]>([id, "rack"], []);
+  const [shuffle, setShuffle] = React.useState(0);
+  const [words, setWords, initWords] = useSessionState<string[]>([id, "words"], []);
+  const [order, setOrder, initOrder] = useSessionState<Order>(["order"], "found");
+  const [progressView, setProgressView, initProgressView] = useSessionState<Progress>(["progress"], "overall");
+
+  const skipResetOnRestore = React.useRef({ done: false });
+  React.useEffect(() => {
+    initBoard();
+    initRack();
+    initWords();
+    initOrder();
+    initProgressView();
+  }, [id]);
 
   function onKeyPress(event: KeyboardEvent) {
     const { key, code } = event;
@@ -56,19 +132,18 @@ function App() {
       // case "Space":
       //   shuffleBoard();
       //   break;
-      
       default:
         play(key);
         break;
     }
   }
-  
+
   function backspace() {
     const newRack = [...rack];
     newRack.pop();
     setRack(newRack);
   }
-  
+
   function ditto() {
     const newRack = [..._.last(words)!];
     setRack(newRack);
@@ -78,12 +153,7 @@ function App() {
     const handler = { handleEvent: onKeyPress };
     window.addEventListener("keyup", handler);
     return window.removeEventListener.bind(window, "keyup", handler);
-  })
-
-  if (!getPuzzlesOnce.current.done) {
-    getPuzzlesOnce.current.done = true;
-    getPuzzles().then(setPuzzles);
-  }
+  });
 
   function shuffleBoard() {
     if (!puzzle) {
@@ -104,15 +174,6 @@ function App() {
   }
 
   React.useEffect(shuffleBoard, [puzzle, shuffle]);
-
-  const skipResetOnRestore = React.useRef({ done: false });
-  React.useEffect(() => {
-    if (!skipResetOnRestore.current.done) {
-      skipResetOnRestore.current.done = true;
-      return;
-    }
-    setWords([]);
-  }, [puzzle, setWords]);
 
   const orderedWords = React.useCallback(() => {
     switch (order) {
@@ -142,14 +203,16 @@ function App() {
       alert("Not a word!");
     }
     setRack([]);
-  }
+  };
 
   let noPlayReason: string | undefined;
+  let playTitle: string | undefined;
   if (!puzzle) {
     noPlayReason = "No Puzzle";
   } else {
     if (rack.length < 4) {
-      noPlayReason = "Too Short";
+      noPlayReason = "Play";
+      playTitle = "Too Short";
     } else if (!rack.includes(puzzle.island)) {
       noPlayReason = `No ${puzzle.island.toUpperCase()}`;
     } else if (words.includes(rack.join(""))) {
@@ -158,19 +221,6 @@ function App() {
   }
 
   return <Container>
-    <Row>
-      <DropdownButton title="Choose a Puzzle">
-        {Object.entries(puzzles).map(([, group], groupIndex) =>
-          group.map((e) => {
-            const { board, island, words } = e;
-            return <Dropdown.Item
-              key={`${groupIndex}.${island}`}
-              onSelect={setPuzzle.bind(null, e)}>
-              {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
-          </Dropdown.Item>;
-          }))}
-      </DropdownButton>
-    </Row>
     <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill" />
       <Col xs={"auto"}>
@@ -183,7 +233,93 @@ function App() {
       <Col xs={"auto"} className="flex-fill" />
     </Row>
     {puzzle && <Row className="mb-2">
-      <Col xs={6}>
+
+
+      <Col xs={"auto"} className="board-container">
+        <Row className="mb-2">
+          <Col xs={"auto"} className="flex-fill" />
+          <Board board={board} play={play} />
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+        <Row className="mb-2">
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            <Row className="mb-2 justify-content-center">
+              <Button variant="primary" disabled={noPlayReason !== undefined} title={playTitle} onClick={submit}>
+                {noPlayReason ?? "Play"}
+              </Button>
+            </Row>
+            <Row>
+              <Col xs="auto" className="flex-fill">
+                <Button variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
+                  <FiShuffle title="Shuffle" />
+                </Button>
+              </Col>
+              <ButtonGroup as={Col} xs="auto">
+                <Button variant="light" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
+                  <FiRefreshCw title="Reset" />
+                </Button>
+                <Button variant="light" disabled={rack.length === 0} onClick={backspace}>
+                  <FiDelete title="Delete" />
+                </Button>
+                <Button variant="light" disabled={words.length === 0} onClick={ditto}>
+                  <FiCopy title="Ditto" />
+                </Button>
+              </ButtonGroup>
+              <Col xs="auto" className="flex-fill">
+                <ButtonGroup>
+                  <Button variant="light" onClick={prevPuzzle}>
+                    <FiChevronsLeft title="Previous Puzzle" />
+                  </Button>
+                  <Button variant="light" onClick={nextPuzzle}>
+                    <FiChevronsRight title="Next Puzzle" />
+                  </Button>
+                </ButtonGroup>
+              </Col>
+            </Row>
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+      </Col>
+
+
+
+      <Col xs={"auto"} className="flex-fill">
+        <Row className="mb-2">
+          <Col xs={"auto"} className="flex-fill" />
+          <Col xs={"auto"}>
+            <ButtonGroup size="sm">
+              {ORDERS.map((orderVal) => <Button key={orderVal} variant={order === orderVal ? "primary" : "outline-primary"} onClick={setOrder.bind(null, orderVal)}>{orderVal}</Button>)}
+            </ButtonGroup>
+          </Col>
+          <Col xs={"auto"} className="flex-fill" />
+        </Row>
+
+        <Row className="word-list">
+          {orderedWords?.()?.map((word) => {
+            let className = globetrotter(word) ? "globetrotter" : undefined;
+            if (rack.length > 0) {
+              const rackWord = rack.join("");
+              if (word.startsWith(rackWord)) {
+                if (word === rackWord) {
+                  className = "already-played";
+                } else {
+                  className = "matches-prefix";
+                }
+              } else {
+                className = "does-not-match-prefix";
+              }
+            }
+            return <div key={word} className={className}>{word}</div>;
+          })}
+        </Row>
+      </Col>
+
+
+
+
+
+      <Col md={4}>
         <Row>
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"}>
@@ -201,85 +337,7 @@ function App() {
           <Col xs={"auto"} className="flex-fill" />
         </Row>
       </Col>
-      <Col>
-        <Row className="mb-2">
-          <Col xs={"auto"} className="flex-fill" />
-          <Board board={board} play={play} />
-          <Col xs={"auto"} className="flex-fill" />
-        </Row>
-        <Row className="mb-2">
-          <Col xs={"auto"} className="flex-fill" />
-          <Col xs={"auto"}>
-            <Row className="mb-2 justify-content-center">
-              <Button variant="primary" disabled={noPlayReason !== undefined} onClick={submit}>
-                {noPlayReason ?? "Play"}
-              </Button>
-            </Row>
-            <Row>
-              <Col xs="auto" className="flex-fill">
-              <Button variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
-                <FiShuffle title="Shuffle"/>
-              </Button>
-              </Col>
-              <ButtonGroup as={Col} xs="auto">
-                <Button variant="light" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
-                  <FiRefreshCw title="Reset"/>
-                </Button>
-                <Button variant="light" disabled={rack.length === 0} onClick={backspace}>
-                  <FiDelete title="Delete"/>
-                </Button>
-                <Button variant="light" disabled={words.length === 0} onClick={ditto}>
-                  <FiCopy title="Ditto"/>
-                </Button>
-              </ButtonGroup>
-              <Col xs="auto" className="flex-fill" style={{opacity:0}}>
-              <Button disabled={true}>
-                <FiShuffle/>
-              </Button>
-              </Col>
-            </Row>
-          </Col>
-          <Col xs={"auto"} className="flex-fill" />
-        </Row>
-      </Col>
-      <Col xs={"auto"}>
-        <Row>
-          <Col xs={"auto"} className="flex-fill" />
-          <Col xs={"auto"}>
-            <ButtonGroup size="sm">
-              {ORDERS.map((orderVal) => <Button key={orderVal} variant={order === orderVal ? "primary" : "outline-primary"} onClick={setOrder.bind(null, orderVal)}>{orderVal}</Button>)}
-            </ButtonGroup>
-          </Col>
-          <Col xs={"auto"} className="flex-fill" />
-        </Row>
-        {/* plain score display
-         <Row>
-          <Col xs={"auto"} className="flex-fill" />
-          <Col xs={"auto"} className="score">
-            {score(words)} points
-          </Col>
-          <Col xs={"auto"} className="flex-fill" />
-        </Row> 
-        */}
-        <Row>
-          {orderedWords?.()?.map((word) => {
-            let className = globetrotter(word) ? "globetrotter" : undefined;
-            if (rack.length > 0) {
-              const rackWord = rack.join("");
-              if (word.startsWith(rackWord)) {
-                if (word === rackWord) {
-                  className = "already-played";
-                } else {
-                  className = "matches-prefix";
-                }
-              } else {
-                className = "does-not-match-prefix";
-              }
-            }
-            return <Col md={1} key={word} className={className}>{word}</Col>;
-          })}
-        </Row>
-      </Col>
+
     </Row>}
   </Container>;
 
@@ -301,7 +359,6 @@ function App() {
     const highScore = score(puzzle.words);
     const playerScore = score(words);
     // const basicScore = <>{playerScore} / {highScore}</>;
-
     let remain = highScore;
     return <>
       {ranks.reverse().map((rank, index) => {
@@ -315,11 +372,9 @@ function App() {
           <Col>{playerRank ? playerScore : ""}</Col>
           <Col>{to}</Col>
           <Col>{rank}</Col>
-        </Row>
+        </Row>;
       })}
-      {/* <Row className="score" style={{textAlign: "center"}}>
-      {basicScore}
-    </Row> */}
+
     </>;
   }
 
@@ -328,7 +383,7 @@ function App() {
   }
 
   function LengthProgress() {
-    const lengthProgress: Array<{ total: number, found: number, length: number }> = [];
+    const lengthProgress: Array<{ total: number; found: number; length: number; }> = [];
     puzzle?.words.forEach((word) => {
       const length = word.length;
       if (!(length in lengthProgress)) {
@@ -352,6 +407,10 @@ function App() {
       {cols.map((index) => <Col key={index} className={index < found ? "marker-found" : index < total ? "marker-unfound" : "marker-blank"} />)}
     </Row>)}</>;
   }
+}
+
+function puzzleId(puzzle: Puzzle): PuzzleId {
+  return [puzzle.island, ...puzzle.board].join("");
 }
 
 function Board({ board, play }: { board: string[], play: (letter: string) => void }) {
@@ -384,7 +443,7 @@ function Cell({ type, play, letter }: { type: "sea" | "island", play(letter: str
 }
 
 function score(words: string | string[]): number {
-  if (isArray(words)) {
+  if (Array.isArray(words)) {
     return _.sumBy(words, score);
   }
   if (words.length <= 4) {

@@ -6,7 +6,6 @@
 // }
 
 export default interface Puzzle {
-    root: string;
     island: string;
     board: string[];
     count: number;

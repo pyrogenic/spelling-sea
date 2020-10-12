@@ -26,18 +26,44 @@ div {
 }
 
 .board {
+    /* min-width: 18rem; */
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 50%;
     background: url("isle.jpg");
-    background-size: contain;
-    /* margin: 1em; */
-    font-size: 6em;
+    background-size: cover;
+    background-position: center;
+    font-size: 6rem;
     color: white;
     text-transform: uppercase;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     text-align: center;
     line-height: 1;
+
+    text-shadow: 3px 3px 0 #093161, 3px -3px 0 #4074b5, -3px 3px 0 #4074b5, -3px -3px 0 #4074b5, 3px 0px 0 #4074b5, 0px 3px 0 #4074b5, -3px 0px 0 #4074b5, 0px -3px 0 #4074b5;
+}
+
+.board > * {
+    background: #ffffff88;
+}
+
+.board .col {
+    cursor: pointer;
+}
+
+.sea {
+    height: 1em;
+    width: 1em;
+}
+
+.island {
+    /*background-color: rgba(224, 196, 170, 0.692);    
+    border-radius: 100%;
+     height: 1em;
+    width: 1em; */
+    font-size: 110%;
+    line-height: 90%;
+    font-weight: 900;
 }
 
 .rank-future {
@@ -71,7 +97,7 @@ div {
 }
 
 .matches-prefix {
-    font-weight: 900;
+    font-weight: 500;
 }
 
 .does-not-match-prefix {
@@ -79,25 +105,6 @@ div {
     color: #00000080;
 }
 
-.board .col {
-    cursor: pointer;
-}
-
-.sea {
-    height: 1em;
-    width: 1em;
-}
-
-.island {
-    background-color: rgba(224, 196, 170, 0.692);    
-    border-radius: 100%;
-    /* height: 1em;
-    width: 1em; */
-    font-size: 110%;
-    line-height: 90%;
-    font-weight: 900;
-    color: rgb(68, 42, 18)
-}
 
 .marker-found {
     background-color: green;
@@ -116,4 +123,10 @@ div {
 .board-row-3 > .col:nth-of-type(1),
 .board-row-3 > .col:nth-of-type(3)  {
     transform: translateY(-33%);
+}
+
+.word-list {
+    column-count: auto;
+    column-width: 6rem;
+    display: block;
 }
