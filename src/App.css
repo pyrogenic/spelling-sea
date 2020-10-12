@@ -26,8 +26,9 @@ div {
 }
 
 .board {
-    /* min-width: 18rem; */
-    border: 1px solid black;
+    touch-action: none;
+    
+    /* border: 1px solid black; */
     border-radius: 50%;
     background: url("isle.jpg");
     background-size: cover;
