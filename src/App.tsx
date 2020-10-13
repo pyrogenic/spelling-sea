@@ -97,6 +97,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
   const [rack, setRack, initRack] = useSessionState<string[]>([id, "rack"], []);
   const [shuffle, setShuffle] = React.useState(0);
   const [words, setWords, initWords] = useSessionState<string[]>([id, "words"], []);
+  const [fails, setFails, initFails] = useSessionState<string[]>([id, "fails"], []);
   const [order, setOrder, initOrder] = useSessionState<Order>(["order"], "found");
   const [progressView, setProgressView, initProgressView] = useSessionState<Progress>(["progress"], "overall");
 
@@ -105,6 +106,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
     initBoard();
     initRack();
     initWords();
+    initFails();
     initOrder();
     initProgressView();
   }, [id]);
@@ -207,8 +209,10 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       setWords([...words, word]);
     } else {
       alert(noPlayReason ?? "Not a word!");
+      setFails([...fails, word]);
     }
-    setRack([]);
+    // Don't like that it auto-clears
+    // setRack([]);
   };
 
   let noPlayReason: string | undefined;
@@ -223,6 +227,8 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       noPlayReason = `No ${puzzle.island.toUpperCase()}`;
     } else if (words.includes(rack.join(""))) {
       noPlayReason = "Already Played";
+    } else if (fails.includes(rack.join(""))) {
+      noPlayReason = "Already Tried";
     }
   }
 
