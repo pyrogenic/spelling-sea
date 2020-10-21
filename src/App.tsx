@@ -16,8 +16,8 @@ import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLe
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
 
-type Progress = "overall" | "length" | "distance";
-const PROGRESS: Progress[] = ["overall", "length", "distance"];
+type Progress = "overall" | "length" | "distance" | "cheat";
+const PROGRESS: Progress[] = ["overall", "length", "distance" , "cheat"];
 
 //type PuzzleId = [root: string, island: string];
 type PuzzleId = string;
@@ -72,7 +72,7 @@ function App() {
     setPuzzle(_.shuffle(allPuzzles()).pop());
   }
 
-  return <Container>
+  return <Container><div className="fixed">
     {puzzle && <PuzzleComponent puzzle={puzzle} prevPuzzle={prevPuzzle} nextPuzzle={nextPuzzle} />}
     <hr />
     <Row>
@@ -88,16 +88,20 @@ function App() {
           }))}
       </DropdownButton>
     </Row>
+  </div>
   </Container>;
 }
 
 function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; prevPuzzle: () => void; nextPuzzle: () => void; }) {
+  // per-puzzle
   const id = puzzleId(puzzle);
   const [board, setBoard, initBoard] = useSessionState<string[]>([id, "board"], []);
   const [rack, setRack, initRack] = useSessionState<string[]>([id, "rack"], []);
   const [shuffle, setShuffle] = React.useState(0);
   const [words, setWords, initWords] = useSessionState<string[]>([id, "words"], []);
   const [fails, setFails, initFails] = useSessionState<string[]>([id, "fails"], []);
+
+  // global
   const [order, setOrder, initOrder] = useSessionState<Order>(["order"], "found");
   const [progressView, setProgressView, initProgressView] = useSessionState<Progress>(["progress"], "overall");
 
@@ -137,9 +141,18 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
         shuffleBoard();
         break;
 
-      // case "Space":
-      //   shuffleBoard();
-      //   break;
+      case "Slash":
+        ditto();
+        break;
+
+      case "ArrowLeft":
+        prevPuzzle();
+        break;
+
+      case "ArrowRight":
+        nextPuzzle();
+        break;
+
       default:
         play(key);
         break;
@@ -211,8 +224,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       alert(noPlayReason ?? "Not a word!");
       setFails([...fails, word]);
     }
-    // Don't like that it auto-clears
-    // setRack([]);
+    setRack([]);
   };
 
   let noPlayReason: string | undefined;
@@ -234,15 +246,18 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
 
   return <Container onMouseDown={(e: any) => e.preventDefault()}>
     <Row className="mb-2">
-      <Col xs={"auto"} className="flex-fill" />
+      <Col xs={"auto"} className="flex-fill"  onClick={backspace}/>
       <Col xs={"auto"}>
         <Row>
           <span className="rack-letter">&nbsp;</span>
-          {rack.map((letter) => <span className={`rack-letter ${letter === puzzle.island ? "rack-letter-island" : ""}`}>{letter}</span>)}
+          {rack.map((letter, i) => <span className={`rack-letter ${letter === puzzle.island ? "rack-letter-island" : ""}`} onClick={(e) => {
+            rack.splice(i, 1);
+            setRack([...rack]);
+          }}>{letter}</span>)}
           <span className="rack-letter">&nbsp;</span>
         </Row>
       </Col>
-      <Col xs={"auto"} className="flex-fill" />
+      <Col xs={"auto"} className="flex-fill"  onClick={backspace}/>
     </Row>
     {puzzle && <Row className="mb-2">
 
@@ -263,27 +278,27 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
             </Row>
             <Row>
               <Col xs="auto" className="flex-fill">
-                <Button variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
+                <Button size="sm" variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
                   <FiShuffle title="Shuffle" />
                 </Button>
               </Col>
               <ButtonGroup as={Col} xs="auto">
-                <Button variant="light" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
+                <Button size="lg" variant="light" disabled={rack.length === 0} onClick={setRack.bind(null, [])}>
                   <FiRefreshCw title="Reset" />
                 </Button>
-                <Button variant="light" disabled={rack.length === 0} onClick={backspace}>
+                <Button size="lg" variant="light" disabled={rack.length === 0} onClick={backspace}>
                   <FiDelete title="Delete" />
                 </Button>
-                <Button variant="light" disabled={words.length === 0} onClick={ditto}>
+                <Button size="lg" variant="light" disabled={words.length === 0} onClick={ditto}>
                   <FiCopy title="Ditto" />
                 </Button>
               </ButtonGroup>
               <Col xs="auto" className="flex-fill">
                 <ButtonGroup>
-                  <Button variant="light" onClick={prevPuzzle}>
+                  <Button size="sm" variant="light" onClick={prevPuzzle}>
                     <FiChevronsLeft title="Previous Puzzle" />
                   </Button>
-                  <Button variant="light" onClick={nextPuzzle}>
+                  <Button size="sm" variant="light" onClick={nextPuzzle}>
                     <FiChevronsRight title="Next Puzzle" />
                   </Button>
                 </ButtonGroup>
@@ -344,7 +359,9 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
         <Row>
           <Col xs={"auto"} className="flex-fill" />
           <Col xs={"auto"}>
-            {progressView === "length" ? <LengthProgress /> : progressView === "overall" ? <OverallProgress /> : <GlobetrotterProgress />}
+            {
+              progressView === "length" ? <LengthProgress /> : progressView === "overall" ? <OverallProgress /> : progressView === "cheat" ? <CheatProgress /> : <GlobetrotterProgress />
+            }
           </Col>
           <Col xs={"auto"} className="flex-fill" />
         </Row>
@@ -418,6 +435,12 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       <Col xs={1}>{length}</Col>
       {cols.map((index) => <Col key={index} className={index < found ? "marker-found" : index < total ? "marker-unfound" : "marker-blank"} />)}
     </Row>)}</>;
+  }
+
+  function CheatProgress() {
+    return <>
+      {puzzle?.words.map((word) => <span className="m-1">{word}</span>)}
+    </>;
   }
 }
 

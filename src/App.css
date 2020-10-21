@@ -13,6 +13,9 @@
     outline: 2px solid #ff000040 !important;
 }
 */
+.fixed {
+    position: fixed;
+}
 
 div {
     white-space: nowrap;
@@ -53,8 +56,12 @@ div {
 }
 
 .sea {
+    /* outline: 1px solid red; */
     height: 1em;
-    width: 1em;
+    width: 1.5em;
+    margin-left: -0.25em;
+    margin-right: -0.25em;
+    overflow: visible;
 }
 
 .rack-letter-island {
