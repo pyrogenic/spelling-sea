@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/spelling-sea/precache-manifest.05ad216781894b22c7430784f42733fc.js"
+  "/spelling-sea/precache-manifest.fedd65d2761501b5618677a27f885770.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a1299805b40814b196a0bae65872840",
+    "revision": "41e02d154575a3d2dd5fd5f6b1aa22dd",
     "url": "/spelling-sea/index.html"
   },
   {
