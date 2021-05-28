@@ -1,0 +1,2631 @@
+[
+  {
+    "name": "Java",
+    "country": "Indonesia",
+    "population": 141370000
+  },
+  {
+    "name": "Honshū",
+    "country": "Japan",
+    "population": 104000000
+  },
+  {
+    "name": "Great Britain",
+    "country": "United Kingdom",
+    "population": 64163534
+  },
+  {
+    "name": "Luzon",
+    "country": "Philippines",
+    "population": 60770440
+  },
+  {
+    "name": "Sumatra",
+    "country": "Indonesia",
+    "population": 58455800
+  },
+  {
+    "name": "Madagascar",
+    "country": "Madagascar",
+    "population": 25571000
+  },
+  {
+    "name": "Mindanao",
+    "country": "Philippines",
+    "population": 25537691
+  },
+  {
+    "name": "Taiwan",
+    "country": "Republic of China",
+    "population": 23461708
+  },
+  {
+    "name": "Borneo",
+    "country": "Indonesia (Kalimantan), Brunei, Malaysia (Sabah, Sarawak)",
+    "population": 21258000
+  },
+  {
+    "name": "Sri Lanka",
+    "country": "Sri Lanka",
+    "population": 21203000
+  },
+  {
+    "name": "Hispaniola",
+    "country": "Dominican Republic, Haiti",
+    "population": 21107000
+  },
+  {
+    "name": "Sulawesi",
+    "country": "Indonesia",
+    "population": 18455058
+  },
+  {
+    "name": "Salsette",
+    "country": "India",
+    "population": 15111974,
+    "region": "Maharashtra"
+  },
+  {
+    "name": "Kyūshū",
+    "country": "Japan",
+    "population": 13200000
+  },
+  {
+    "name": "New Guinea",
+    "country": "Papua New Guinea and Indonesia",
+    "population": 11818000,
+    "region": "Western New Guinea"
+  },
+  {
+    "name": "Cuba",
+    "country": "Cuba",
+    "population": 11167325
+  },
+  {
+    "name": "Hainan",
+    "country": "China",
+    "population": 9035000
+  },
+  {
+    "name": "Long Island",
+    "country": "United States",
+    "population": 7838822,
+    "region": "New York"
+  },
+  {
+    "name": "Ireland",
+    "country": "Republic of Ireland and United Kingdom",
+    "population": 6380661,
+    "region": "Northern Ireland"
+  },
+  {
+    "name": "Singapore Island",
+    "country": "Singapore",
+    "population": 5607300
+  },
+  {
+    "name": "Hokkaidō",
+    "country": "Japan",
+    "population": 5383579
+  },
+  {
+    "name": "Sicily",
+    "country": "Italy",
+    "population": 5017000,
+    "region": "Sicily"
+  },
+  {
+    "name": "Negros",
+    "country": "Philippines",
+    "population": 4414131
+  },
+  {
+    "name": "Panay",
+    "country": "Philippines",
+    "population": 4307000
+  },
+  {
+    "name": "Bali",
+    "country": "Indonesia",
+    "population": 4225384
+  },
+  {
+    "name": "Cebu",
+    "country": "Philippines",
+    "population": 4164535
+  },
+  {
+    "name": "Shikoku",
+    "country": "Japan",
+    "population": 3815000
+  },
+  {
+    "name": "North Island",
+    "country": "New Zealand",
+    "population": 3896200
+  },
+  {
+    "name": "Madura",
+    "country": "Indonesia",
+    "population": 3622000
+  },
+  {
+    "name": "Puerto Rico",
+    "country": "Puerto Rico",
+    "population": 3474182,
+    "region": "territory of the United States"
+  },
+  {
+    "name": "Lombok",
+    "country": "Indonesia",
+    "population": 3311044
+  },
+  {
+    "name": "Timor",
+    "country": "Indonesia (part of East Nusa Tenggara province) and East Timor",
+    "population": 3182693
+  },
+  {
+    "name": "Jamaica",
+    "country": "Jamaica",
+    "population": 2950210
+  },
+  {
+    "name": "Zhongshan Island",
+    "country": "China and Macau",
+    "population": 2890000
+  },
+  {
+    "name": "Zealand",
+    "country": "Denmark",
+    "population": 2287740
+  },
+  {
+    "name": "Leyte",
+    "country": "Philippines",
+    "population": 2388518
+  },
+  {
+    "name": "Xiamen Island",
+    "country": "China",
+    "population": 2040000,
+    "region": "Fujian"
+  },
+  {
+    "name": "Island of Montreal",
+    "country": "Canada",
+    "population": 2014221,
+    "region": "Quebec"
+  },
+  {
+    "name": "Flores",
+    "country": "Indonesia",
+    "population": 1831000
+  },
+  {
+    "name": "Bhola Island",
+    "country": "Bangladesh",
+    "population": 1758000
+  },
+  {
+    "name": "Samar",
+    "country": "Philippines",
+    "population": 1751267
+  },
+  {
+    "name": "Sardinia",
+    "country": "Italy",
+    "population": 1659000,
+    "region": "Sardinia"
+  },
+  {
+    "name": "Manhattan Island",
+    "country": "United States",
+    "population": 1619090,
+    "region": "New York"
+  },
+  {
+    "name": "Haizhu",
+    "country": "China",
+    "population": 1558663,
+    "region": "Guangdong"
+  },
+  {
+    "name": "São Luís",
+    "country": "Brazil",
+    "population": 1381459,
+    "region": "Maranhão"
+  },
+  {
+    "name": "Sumbawa",
+    "country": "Indonesia",
+    "population": 1391340
+  },
+  {
+    "name": "Mindoro",
+    "country": "Philippines",
+    "population": 1331473
+  },
+  {
+    "name": "Okinawa Island",
+    "country": "Japan",
+    "population": 1301000
+  },
+  {
+    "name": "Trinidad",
+    "country": "Trinidad and Tobago",
+    "population": 1267145
+  },
+  {
+    "name": "Hong Kong Island",
+    "country": "Hong Kong",
+    "population": 1253417
+  },
+  {
+    "name": "Mauritius",
+    "country": "Mauritius",
+    "population": 1219265
+  },
+  {
+    "name": "Bohol",
+    "country": "Philippines",
+    "population": 1211000
+  },
+  {
+    "name": "South Island",
+    "country": "New Zealand",
+    "population": 1187300
+  },
+  {
+    "name": "Batam",
+    "country": "Indonesia",
+    "population": 1153860
+  },
+  {
+    "name": "Bahrain Island",
+    "country": "Bahrain",
+    "population": 1095000
+  },
+  {
+    "name": "Cyprus",
+    "country": "Cyprus, Akrotiri and Dhekelia (UK), Northern Cyprus (Recognised only by Turkey)",
+    "population": 1088503
+  },
+  {
+    "name": "Oahu",
+    "country": "United States",
+    "population": 976372,
+    "region": "Hawaii"
+  },
+  {
+    "name": "Bangka",
+    "country": "Indonesia",
+    "population": 960692
+  },
+  {
+    "name": "Tenerife",
+    "country": "Spain",
+    "population": 906854,
+    "region": "Canary Islands"
+  },
+  {
+    "name": "Unguja (Zanzibar Island)",
+    "country": "Tanzania",
+    "population": 896721,
+    "region": "Zanzibar"
+  },
+  {
+    "name": "Palawan",
+    "country": "Philippines",
+    "population": 886308
+  },
+  {
+    "name": "Mallorca",
+    "country": "Spain",
+    "population": 862397,
+    "region": "Balearic Islands"
+  },
+  {
+    "name": "Penang Island",
+    "country": "Malaysia",
+    "population": 860000
+  },
+  {
+    "name": "Gran Canaria",
+    "country": "Spain",
+    "population": 838397,
+    "region": "Canary Islands"
+  },
+  {
+    "name": "Réunion",
+    "country": "France",
+    "population": 837868
+  },
+  {
+    "name": "Cangshan",
+    "country": "China",
+    "population": 762746,
+    "region": "Fujian"
+  },
+  {
+    "name": "São Vicente",
+    "country": "Brazil",
+    "population": 760000,
+    "region": "São Paulo"
+  },
+  {
+    "name": "Nias",
+    "country": "Indonesia",
+    "population": 756338
+  },
+  {
+    "name": "Vancouver Island",
+    "country": "Canada",
+    "population": 870297,
+    "region": "British Columbia"
+  },
+  {
+    "name": "Masbate",
+    "country": "Philippines",
+    "population": 706897
+  },
+  {
+    "name": "Sumba",
+    "country": "Indonesia",
+    "population": 686113,
+    "region": "East Nusa Tenggara"
+  },
+  {
+    "name": "Viti Levu",
+    "country": "Fiji",
+    "population": 661997
+  },
+  {
+    "name": "Crete",
+    "country": "Greece",
+    "population": 623065
+  },
+  {
+    "name": "Jeju",
+    "country": "South Korea",
+    "population": 621550
+  },
+  {
+    "name": "Chongming",
+    "country": "China",
+    "population": 615297,
+    "region": "Shanghai"
+  },
+  {
+    "name": "Phuket",
+    "country": "Thailand",
+    "population": 525018
+  },
+  {
+    "name": "New Britain",
+    "country": "Papua New Guinea",
+    "population": 513926
+  },
+  {
+    "name": "Tasmania",
+    "country": "Australia",
+    "population": 507626
+  },
+  {
+    "name": "Zhoushan",
+    "country": "China",
+    "population": 502667,
+    "region": "Zhejiang"
+  },
+  {
+    "name": "Newfoundland",
+    "country": "Canada",
+    "population": 502273,
+    "region": "Newfoundland and Labrador"
+  },
+  {
+    "name": "Staten Island",
+    "country": "United States",
+    "population": 474558,
+    "region": "New York City, New York"
+  },
+  {
+    "name": "Sakhalin",
+    "country": "Russia",
+    "population": 471515
+  },
+  {
+    "name": "Halmahera",
+    "country": "Indonesia",
+    "population": 449938
+  },
+  {
+    "name": "Jolo",
+    "country": "Philippines",
+    "population": 530000
+  },
+  {
+    "name": "Buton",
+    "country": "Indonesia",
+    "population": 447408
+  },
+  {
+    "name": "Funen",
+    "country": "Denmark",
+    "population": 466284
+  },
+  {
+    "name": "Ambon",
+    "country": "Indonesia",
+    "population": 441000
+  },
+  {
+    "name": "Margarita Island",
+    "country": "Venezuela",
+    "population": 489917
+  },
+  {
+    "name": "Seram",
+    "country": "Indonesia",
+    "population": 434113
+  },
+  {
+    "name": "Île Jésus",
+    "country": "Canada",
+    "population": 429413,
+    "region": "Quebec"
+  },
+  {
+    "name": "IJsselmonde",
+    "country": "Netherlands",
+    "population": 423000
+  },
+  {
+    "name": "Santa Catarina",
+    "country": "Brazil",
+    "population": 420000,
+    "region": "Santa Catarina"
+  },
+  {
+    "name": "Pemba",
+    "country": "Tanzania",
+    "population": 406808
+  },
+  {
+    "name": "Sandwip",
+    "country": "Bangladesh",
+    "population": 400000
+  },
+  {
+    "name": "Basilan",
+    "country": "Philippines",
+    "population": 459367
+  },
+  {
+    "name": "Martinique",
+    "country": "France",
+    "population": 390371,
+    "region": "Martinique"
+  },
+  {
+    "name": "Malta",
+    "country": "Malta",
+    "population": 386057
+  },
+  {
+    "name": "Mactan",
+    "country": "Philippines",
+    "population": 467824
+  },
+  {
+    "name": "Marajó",
+    "country": "Brazil",
+    "population": 383336,
+    "region": "Pará"
+  },
+  {
+    "name": "Grande Comore",
+    "country": "Comoros",
+    "population": 369600
+  },
+  {
+    "name": "Pingtan (Haitan)",
+    "country": "China",
+    "population": 357760,
+    "region": "Fujian"
+  },
+  {
+    "name": "Ukerewe Island",
+    "country": "Tanzania",
+    "population": 345147
+  },
+  {
+    "name": "Yangzhong",
+    "country": "China",
+    "population": 334977,
+    "region": "Jiangsu"
+  },
+  {
+    "name": "Bioko",
+    "country": "Equatorial Guinea",
+    "population": 339695
+  },
+  {
+    "name": "Bintan",
+    "country": "Indonesia",
+    "population": 329659
+  },
+  {
+    "name": "Iceland",
+    "country": "Iceland",
+    "population": 325671
+  },
+  {
+    "name": "Maheshkhali",
+    "country": "Bangladesh",
+    "population": 321218
+  },
+  {
+    "name": "Flevopolder",
+    "country": "Netherlands",
+    "population": 344521,
+    "region": "Flevoland"
+  },
+  {
+    "name": "Corsica",
+    "country": "France",
+    "population": 316578
+  },
+  {
+    "name": "Santo Amaro (Guarujá)",
+    "country": "Brazil",
+    "population": 308989,
+    "region": "São Paulo"
+  },
+  {
+    "name": "Anjouan",
+    "country": "Comoros",
+    "population": 306800
+  },
+  {
+    "name": "Vendsyssel-Thy",
+    "country": "Denmark",
+    "population": 306373
+  },
+  {
+    "name": "Vitória",
+    "country": "Brazil",
+    "population": 300000,
+    "region": "Espirito Santo"
+  },
+  {
+    "name": "Chengār",
+    "country": "Bangladesh",
+    "population": 292057
+  },
+  {
+    "name": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "population": 280385
+  },
+  {
+    "name": "Barbados",
+    "country": "Barbados",
+    "population": 279254
+  },
+  {
+    "name": "Muna",
+    "country": "Indonesia",
+    "population": 268140
+  },
+  {
+    "name": "Santiago",
+    "country": "Cape Verde",
+    "population": 290280
+  },
+  {
+    "name": "Madeira",
+    "country": "Portugal",
+    "population": 262456
+  },
+  {
+    "name": "Belitung",
+    "country": "Indonesia",
+    "population": 262357
+  },
+  {
+    "name": "Grande Terre",
+    "country": "New Caledonia",
+    "population": 247669,
+    "region": "sui generis collectivity of France"
+  },
+  {
+    "name": "Geoje Island",
+    "country": "South Korea",
+    "population": 241711
+  },
+  {
+    "name": "Bushrod",
+    "country": "Liberia",
+    "population": 234596
+  },
+  {
+    "name": "Bougainville",
+    "country": "Papua New Guinea",
+    "population": 234280
+  },
+  {
+    "name": "Marinduque",
+    "country": "Philippines",
+    "population": 227828
+  },
+  {
+    "name": "Lagos Island",
+    "country": "Nigeria",
+    "population": 212700
+  },
+  {
+    "name": "Governador Island",
+    "country": "Brazil",
+    "population": 212574,
+    "region": "Rio de Janeiro"
+  },
+  {
+    "name": "New Providence",
+    "country": "Bahamas",
+    "population": 210832
+  },
+  {
+    "name": "Euboea",
+    "country": "Greece",
+    "population": 210815
+  },
+  {
+    "name": "Lulu Island",
+    "country": "Canada",
+    "population": 206300,
+    "region": "British Columbia"
+  },
+  {
+    "name": "Vasilievsky Island",
+    "country": "Russia",
+    "population": 202650
+  },
+  {
+    "name": "Grande-Terre",
+    "country": "France",
+    "population": 197603,
+    "region": "Guadeloupe"
+  },
+  {
+    "name": "New Ireland",
+    "country": "Papua New Guinea",
+    "population": 194067
+  },
+  {
+    "name": "Tarakan",
+    "country": "Indonesia",
+    "population": 193370,
+    "region": "North Kalimantan"
+  },
+  {
+    "name": "Tsing Yi",
+    "country": "Hong Kong",
+    "population": 191500
+  },
+  {
+    "name": "Dongchong Island",
+    "country": "China",
+    "population": 191019,
+    "region": "Guangdong"
+  },
+  {
+    "name": "Hawaii (island)",
+    "country": "United States",
+    "population": 190821,
+    "region": "Hawaii"
+  },
+  {
+    "name": "Muharraq",
+    "country": "Bahrain",
+    "population": 188597
+  },
+  {
+    "name": "Grande Terre",
+    "country": "France",
+    "population": 188442,
+    "region": "Mayotte"
+  },
+  {
+    "name": "Raghopur",
+    "country": "India",
+    "population": 187722
+  },
+  {
+    "name": "Chiloé",
+    "country": "Chile",
+    "population": 186933
+  },
+  {
+    "name": "Basse-Terre",
+    "country": "France",
+    "population": 186661,
+    "region": "Guadeloupe"
+  },
+  {
+    "name": "Ternate",
+    "country": "Indonesia",
+    "population": 185705,
+    "region": "North Maluku"
+  },
+  {
+    "name": "Jinshazhou",
+    "country": "China",
+    "population": 183000,
+    "region": "Guangdong"
+  },
+  {
+    "name": "South Andaman Island",
+    "country": "India",
+    "population": 181949,
+    "region": "Andaman and Nicobar Islands"
+  },
+  {
+    "name": "Tahiti",
+    "country": "French Polynesia",
+    "population": 178133,
+    "region": "overseas collectivity of France"
+  },
+  {
+    "name": "Isla Grande de Tierra del Fuego",
+    "country": "Argentina and Chile",
+    "population": 172797
+  },
+  {
+    "name": "São Tomé",
+    "country": "São Tomé and Príncipe",
+    "population": 171856
+  },
+  {
+    "name": "Voorne-Putten",
+    "country": "Netherlands",
+    "population": 170411
+  },
+  {
+    "name": "Carmen, Campeche",
+    "country": "Mexico",
+    "population": 169466
+  },
+  {
+    "name": "Majuli",
+    "country": "India",
+    "population": 167304,
+    "region": "Assam"
+  },
+  {
+    "name": "Csepel Island",
+    "country": "Hungary",
+    "population": 165000,
+    "region": "Budapest"
+  },
+  {
+    "name": "Buru",
+    "country": "Indonesia",
+    "population": 162116,
+    "region": "Maluku"
+  },
+  {
+    "name": "Guimaras",
+    "country": "Philippines",
+    "population": 162943
+  },
+  {
+    "name": "Saint Lucia",
+    "country": "Saint Lucia",
+    "population": 166526
+  },
+  {
+    "name": "Maui",
+    "country": "United States",
+    "population": 160202,
+    "region": "Hawaii"
+  },
+  {
+    "name": "Amager",
+    "country": "Denmark",
+    "population": 160064
+  },
+  {
+    "name": "Guam",
+    "country": "United States",
+    "population": 160000
+  },
+  {
+    "name": "Guadalcanal",
+    "country": "Solomon Islands",
+    "population": 158222
+  },
+  {
+    "name": "Tablas",
+    "country": "Philippines",
+    "population": 158050
+  },
+  {
+    "name": "Biliran",
+    "country": "Philippines",
+    "population": 155061
+  },
+  {
+    "name": "Malé",
+    "country": "Maldives",
+    "population": 153379
+  },
+  {
+    "name": "Qeshm",
+    "country": "Iran",
+    "population": 148993
+  },
+  {
+    "name": "Portsea Island",
+    "country": "United Kingdom",
+    "population": 205400,
+    "region": "England"
+  },
+  {
+    "name": "Prince Edward Island",
+    "country": "Canada",
+    "population": 148649,
+    "region": "Prince Edward Island"
+  },
+  {
+    "name": "Mombasa",
+    "country": "Kenya",
+    "population": 146334
+  },
+  {
+    "name": "Upolu",
+    "country": "Samoa",
+    "population": 147629
+  },
+  {
+    "name": "Alor",
+    "country": "Indonesia",
+    "population": 145299
+  },
+  {
+    "name": "Yeong Island",
+    "country": "South Korea",
+    "population": 144884,
+    "region": "Busan"
+  },
+  {
+    "name": "Isle of Wight",
+    "country": "United Kingdom",
+    "population": 139800,
+    "region": "England"
+  },
+  {
+    "name": "Malaita",
+    "country": "Solomon Islands",
+    "population": 137596
+  },
+  {
+    "name": "Djerba",
+    "country": "Tunisia",
+    "population": 139517
+  },
+  {
+    "name": "Awaji",
+    "country": "Japan",
+    "population": 138804
+  },
+  {
+    "name": "Curaçao",
+    "country": "Curaçao",
+    "population": 156971,
+    "region": "autonomous country in the Kingdom of the Netherlands"
+  },
+  {
+    "name": "São Miguel",
+    "country": "Portugal",
+    "population": 137830,
+    "region": "Azores"
+  },
+  {
+    "name": "Bantayan",
+    "country": "Philippines",
+    "population": 136960
+  },
+  {
+    "name": "Mannar Island",
+    "country": "Sri Lanka",
+    "population": 132000
+  },
+  {
+    "name": "Lanzarote",
+    "country": "Spain",
+    "population": 131708,
+    "region": "Canary Islands"
+  },
+  {
+    "name": "Cape Breton Island",
+    "country": "Canada",
+    "population": 131606,
+    "region": "Nova Scotia"
+  },
+  {
+    "name": "Xiaoguwei",
+    "country": "China",
+    "population": 131470,
+    "region": "Guangdong"
+  },
+  {
+    "name": "Hisingen",
+    "country": "Sweden",
+    "population": 130497
+  },
+  {
+    "name": "Vanua Levu",
+    "country": "Fiji",
+    "population": 130000
+  },
+  {
+    "name": "Kutubdia",
+    "country": "Bangladesh",
+    "population": 125279
+  },
+  {
+    "name": "Srirangam",
+    "country": "India",
+    "population": 120000,
+    "region": "Tamil Nadu"
+  },
+  {
+    "name": "Rhodes",
+    "country": "Greece",
+    "population": 119830
+  },
+  {
+    "name": "Dordrecht",
+    "country": "Netherlands",
+    "population": 118601
+  },
+  {
+    "name": "Ibiza",
+    "country": "Spain",
+    "population": 117698,
+    "region": "Balearic Islands"
+  },
+  {
+    "name": "Daishan",
+    "country": "China",
+    "population": 113983,
+    "region": "Zhejiang"
+  },
+  {
+    "name": "Rote",
+    "country": "Indonesia",
+    "population": 119908,
+    "region": "East Nusa Tenggara"
+  },
+  {
+    "name": "Lembata",
+    "country": "Indonesia",
+    "population": 117829,
+    "region": "East Nusa Tenggara"
+  },
+  {
+    "name": "Biak",
+    "country": "Indonesia",
+    "population": 112873,
+    "region": "Papua"
+  },
+  {
+    "name": "Nansha",
+    "country": "China",
+    "population": 112151,
+    "region": "Guangdong"
+  },
+  {
+    "name": "Peleng",
+    "country": "Indonesia",
+    "population": 109319,
+    "region": "Central Sulawesi"
+  },
+  {
+    "name": "Bengkalis",
+    "country": "Indonesia",
+    "population": 108700,
+    "region": "Riau"
+  },
+  {
+    "name": "Saint Vincent",
+    "country": "Saint Vincent and the Grenadines",
+    "population": 108600
+  },
+  {
+    "name": "Daishan",
+    "country": "China",
+    "population": 105945,
+    "region": "Zhejiang"
+  },
+  {
+    "name": "Corfu",
+    "country": "Greece",
+    "population": 104371
+  },
+  {
+    "name": "Jersey",
+    "country": "Jersey",
+    "population": 104200,
+    "region": "Crown Dependency of the United Kingdom"
+  },
+  {
+    "name": "Aruba",
+    "country": "Aruba",
+    "population": 103484,
+    "region": "autonomous country in the Kingdom of the Netherlands"
+  },
+  {
+    "name": "Phu Quoc",
+    "country": "Vietnam",
+    "population": 103000,
+    "region": "Kien Giang"
+  },
+  {
+    "name": "Lantau Island",
+    "country": "Hong Kong",
+    "population": 105000
+  },
+  {
+    "name": "Abadan Island",
+    "country": "Iran",
+    "population": 100000
+  },
+  {
+    "name": "Waderick Wells Cay",
+    "country": "Bahamas"
+  },
+  {
+    "name": "Wadmalaw",
+    "country": "United States"
+  },
+  {
+    "name": "Waglan",
+    "country": "China"
+  },
+  {
+    "name": "Waigeo",
+    "country": "Indonesia"
+  },
+  {
+    "name": "Waiheke",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Wakde",
+    "country": "Indonesia"
+  },
+  {
+    "name": "Wake",
+    "country": "United States"
+  },
+  {
+    "name": "Wakenaam",
+    "country": "Guyana"
+  },
+  {
+    "name": "Walcheren",
+    "country": "Netherlands"
+  },
+  {
+    "name": "Waldron",
+    "country": "United States"
+  },
+  {
+    "name": "Wales",
+    "country": "Canada"
+  },
+  {
+    "name": "Walfisch",
+    "country": "Germany"
+  },
+  {
+    "name": "Wallis",
+    "country": "France"
+  },
+  {
+    "name": "Walpole",
+    "country": "Canada"
+  },
+  {
+    "name": "Walrus",
+    "country": "United States"
+  },
+  {
+    "name": "Wangerooge",
+    "country": "Germany"
+  },
+  {
+    "name": "Warbah",
+    "country": "Kuwait"
+  },
+  {
+    "name": "Warnie Kępy",
+    "country": "Poland"
+  },
+  {
+    "name": "Washington",
+    "country": "United States"
+  },
+  {
+    "name": "Watkins",
+    "country": "United States"
+  },
+  {
+    "name": "Watling",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "Watson",
+    "country": "United States"
+  },
+  {
+    "name": "Wax Cay",
+    "country": "Bahamas"
+  },
+  {
+    "name": "Wayland",
+    "country": "United States"
+  },
+  {
+    "name": "Weddell",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "Weepecket",
+    "country": "United States"
+  },
+  {
+    "name": "Wellington Island",
+    "country": "Chile"
+  },
+  {
+    "name": "Wells",
+    "country": "United States"
+  },
+  {
+    "name": "Westham",
+    "country": "Canada"
+  },
+  {
+    "name": "Weston",
+    "country": "Canada"
+  },
+  {
+    "name": "Westray",
+    "country": "Scotland"
+  },
+  {
+    "name": "Wetar",
+    "country": "Indonesia"
+  },
+  {
+    "name": "Whakaari",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Whale",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Whalsay",
+    "country": "Scotland"
+  },
+  {
+    "name": "Whanganui",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Wheeler",
+    "country": "United States"
+  },
+  {
+    "name": "Wheeling",
+    "country": "United States"
+  },
+  {
+    "name": "Whidbey",
+    "country": "United States"
+  },
+  {
+    "name": "Whistling Cay",
+    "country": "United States"
+  },
+  {
+    "name": "White Cloud",
+    "country": "Canada"
+  },
+  {
+    "name": "Whitefish",
+    "country": "Canada"
+  },
+  {
+    "name": "White Head",
+    "country": "Canada"
+  },
+  {
+    "name": "Wiegand",
+    "country": "Canada"
+  },
+  {
+    "name": "Wild Horse",
+    "country": "United States"
+  },
+  {
+    "name": "Wielki Krzek",
+    "country": "Poland"
+  },
+  {
+    "name": "Wight",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "Wilhelm Island",
+    "country": "Norway"
+  },
+  {
+    "name": "Wilkes",
+    "country": "United States"
+  },
+  {
+    "name": "Williamson",
+    "country": "United States"
+  },
+  {
+    "name": "Willingdon",
+    "country": "India"
+  },
+  {
+    "name": "Wilmington",
+    "country": "United States"
+  },
+  {
+    "name": "Wilson",
+    "country": "United Kingdom"
+  },
+  {
+    "name": "Wilson",
+    "country": "United States"
+  },
+  {
+    "name": "Windermere",
+    "country": "Bahamas"
+  },
+  {
+    "name": "Wislow",
+    "country": "United States"
+  },
+  {
+    "name": "Witten Towhead",
+    "country": "United States"
+  },
+  {
+    "name": "Wizard",
+    "country": "United States"
+  },
+  {
+    "name": "Wolfe",
+    "country": "Canada"
+  },
+  {
+    "name": "Wolin",
+    "country": "Poland"
+  },
+  {
+    "name": "Wong Wan Chau",
+    "country": "China"
+  },
+  {
+    "name": "Wood Cay",
+    "country": "Bahamas"
+  },
+  {
+    "name": "Wotho Atoll",
+    "country": "Marshall Islands"
+  },
+  {
+    "name": "Wotje Atoll",
+    "country": "Marshall Islands"
+  },
+  {
+    "name": "Wrangel",
+    "country": "Russia"
+  },
+  {
+    "name": "Wrangell",
+    "country": "United States"
+  },
+  {
+    "name": "Wreck",
+    "country": "Canada"
+  },
+  {
+    "name": "Wuvulu",
+    "country": "Papua New Guinea"
+  },
+  {
+    "name": "Wyre",
+    "country": "Scotland"
+  },
+  {
+    "name": "Eagle",
+    "etc": "Disambiguation"
+  },
+  {
+    "name": "Eagle",
+    "country": "United States",
+    "etc": "Washington"
+  },
+  {
+    "name": "Eagle",
+    "country": "United States",
+    "etc": "Apostle Islands, Wisconsin"
+  },
+  {
+    "name": "Easdale",
+    "country": "Scotland",
+    "etc": "Slate Islands"
+  },
+  {
+    "name": "Rapa Nui",
+    "country": "Chile",
+    "etc": "called Rapa Nui in Rapa Nui"
+  },
+  {
+    "name": "Ebeye",
+    "country": "Marshall Islands",
+    "etc": "Ralik Chain"
+  },
+  {
+    "name": "Ebon Atoll",
+    "country": "Marshall Islands",
+    "etc": "Ralik Chain"
+  },
+  {
+    "name": "Eclipse",
+    "country": "Australia",
+    "etc": "Great Palm Island group, Queensland"
+  },
+  {
+    "name": "Eday",
+    "country": "Scotland",
+    "etc": "Orkney Islands"
+  },
+  {
+    "name": "Egdell",
+    "country": "Canada",
+    "etc": "Nunavut"
+  },
+  {
+    "name": "Edgeøya",
+    "country": "Norway",
+    "etc": "Svalbard"
+  },
+  {
+    "name": "Estido",
+    "country": "United States",
+    "etc": "South Carolina"
+  },
+  {
+    "name": "Éfaté",
+    "country": "Vanuatu",
+    "etc": "Pacific Ocean"
+  },
+  {
+    "name": "Egg",
+    "country": "Bahamas",
+    "etc": "Bahamas"
+  },
+  {
+    "name": "Egholm",
+    "country": "Denmark",
+    "etc": "Limfjord"
+  },
+  {
+    "name": "Egilsay",
+    "country": "Scotland",
+    "etc": "The North Isles, Orkney Islands"
+  },
+  {
+    "name": "Eglington",
+    "country": "Canada",
+    "etc": "Queen Elizabeth Islands, Northwest Territories"
+  },
+  {
+    "name": "Eigg",
+    "country": "Scotland",
+    "etc": "Inner Hebrides"
+  },
+  {
+    "name": "Eightmile",
+    "country": "United States",
+    "etc": "West Virginia"
+  },
+  {
+    "name": "Eilean Dubh",
+    "country": "Scotland",
+    "etc": "Kyles of Bute"
+  },
+  {
+    "name": "Eilean Dubh Mòr",
+    "country": "Scotland",
+    "etc": "Inner Hebrides"
+  },
+  {
+    "name": "Eilean Dearg",
+    "country": "Scotland",
+    "etc": "Islands of the Clyde"
+  },
+  {
+    "name": "Eilean Fraoich",
+    "country": "Scotland",
+    "etc": "Burnt Islands"
+  },
+  {
+    "name": "El Hierro",
+    "country": "Spain",
+    "etc": "Canary Islands"
+  },
+  {
+    "name": "Elafonissos",
+    "country": "Greece"
+  },
+  {
+    "name": "Elba",
+    "country": "Italy",
+    "etc": "Tuscan Archipelago"
+  },
+  {
+    "name": "Elbow Cay",
+    "country": "Bahamas",
+    "etc": "Bahamas"
+  },
+  {
+    "name": "Elephant",
+    "country": "British Overseas Territory of the United Kingdom",
+    "etc": "Jason Islands of the Falkland Islands"
+  },
+  {
+    "name": "Elephant",
+    "country": "Claimed by Argentine Antarctica, Argentina, Antártica Chilena Province of Chile, and British Antarctic Territory of the United Kingdom",
+    "etc": "South Shetland Islands"
+  },
+  {
+    "name": "Elephanta",
+    "country": "India",
+    "etc": "Maharashtra"
+  },
+  {
+    "name": "Eleuthera",
+    "country": "Bahamas",
+    "etc": "Bahamas"
+  },
+  {
+    "name": "Eliza",
+    "country": "United States",
+    "etc": "San Juan Islands, Washington"
+  },
+  {
+    "name": "Elizabeth",
+    "country": "Bahamas",
+    "etc": "Bahamas"
+  },
+  {
+    "name": "Elizabeth",
+    "country": "United Kingdom",
+    "etc": "Bermuda"
+  },
+  {
+    "name": "Elizabeth",
+    "country": "Australia",
+    "etc": "Western Port Bay, Victoria"
+  },
+  {
+    "name": "Ellef Ringnes",
+    "country": "Canada",
+    "etc": "Sverdrup Islands, Nunavut"
+  },
+  {
+    "name": "Ellesmere",
+    "country": "Canada",
+    "etc": "Nunavut"
+  },
+  {
+    "name": "Ellis",
+    "country": "United States",
+    "etc": "New York Harbor, New York"
+  },
+  {
+    "name": "Elobey Grande",
+    "country": "Equatorial Guinea",
+    "etc": "Río Muni"
+  },
+  {
+    "name": "Elobey Chico",
+    "country": "Equatorial Guinea",
+    "etc": "Río Muni"
+  },
+  {
+    "name": "Eluvai Theevu",
+    "country": "Sri Lanka"
+  },
+  {
+    "name": "Émaé",
+    "country": "Vanuatu",
+    "etc": "Shepherd Islands"
+  },
+  {
+    "name": "Emerald",
+    "country": "Canada",
+    "etc": "Queen Elizabeth Islands, Northwest Territories"
+  },
+  {
+    "name": "Emirau",
+    "country": "Papua New Guinea",
+    "etc": "St. Matthias Islands"
+  },
+  {
+    "name": "Endelave",
+    "country": "Denmark",
+    "etc": "Kattegat"
+  },
+  {
+    "name": "Endicott",
+    "country": "United States",
+    "etc": "Beaufort Sea, Alaska"
+  },
+  {
+    "name": "Enewetak",
+    "country": "Marshall Islands",
+    "etc": "Ralik chain"
+  },
+  {
+    "name": "Enterprise Island",
+    "country": "United States",
+    "etc": "Mississippi River, Illinois"
+  },
+  {
+    "name": "Epi",
+    "country": "Vanuatu",
+    "etc": "Pacific Ocean"
+  },
+  {
+    "name": "Epsilon",
+    "country": "United Kingdom",
+    "etc": "Bermuda"
+  },
+  {
+    "name": "Ereikoussa",
+    "country": "Greece"
+  },
+  {
+    "name": "Erikub Atoll",
+    "country": "Marshall Islands",
+    "etc": "Ralik Chain"
+  },
+  {
+    "name": "Ermal",
+    "country": "Portugal",
+    "etc": "Minho Islands"
+  },
+  {
+    "name": "Erraid",
+    "country": "Scotland",
+    "etc": "Inner Hebrides"
+  },
+  {
+    "name": "Erromango",
+    "country": "Vanuatu",
+    "etc": "Pacific Ocean"
+  },
+  {
+    "name": "Ertholmene",
+    "country": "Denmark",
+    "etc": "also known as Christiansø"
+  },
+  {
+    "name": "Ertvågøy",
+    "country": "Norway"
+  },
+  {
+    "name": "Esk",
+    "country": "Australia",
+    "etc": "Great Palm Island group, Queensland"
+  },
+  {
+    "name": "Isla del Espiritu Santo",
+    "country": "Mexico",
+    "etc": "Baja California Sur"
+  },
+  {
+    "name": "Espiritu Santo",
+    "country": "Vanuatu",
+    "etc": "Pacific Ocean"
+  },
+  {
+    "name": "Eta",
+    "country": "United Kingdom",
+    "etc": "Bermuda"
+  },
+  {
+    "name": "Etolin",
+    "country": "United States",
+    "etc": "Alexander Archipelago, Alaska"
+  },
+  {
+    "name": "Euboea",
+    "country": "Greece",
+    "etc": "Greek archipelago"
+  },
+  {
+    "name": "Eureka",
+    "country": "United States",
+    "etc": "Ohio River, West Virginia"
+  },
+  {
+    "name": "Evans",
+    "country": "United States",
+    "etc": "Prince William Sound, Alaska"
+  },
+  {
+    "name": "Exuma",
+    "country": "Bahamas",
+    "etc": "Bahamas"
+  },
+  {
+    "name": "Eynhallow",
+    "country": "Scotland",
+    "etc": "The North Isles, Orkney Islands"
+  },
+  {
+    "name": "Eysturoy",
+    "country": "Denmark",
+    "etc": "Faroe Islands"
+  },
+  {
+    "name": "Kachelotplate",
+    "country": "Germany",
+    "etc": "East Frisian Islands"
+  },
+  {
+    "name": "Kácsa-sziget",
+    "country": "Hungary",
+    "etc": "Tisza"
+  },
+  {
+    "name": "Kagalaska",
+    "country": "United States",
+    "etc": "Andreanof Islands group of the Aleutian Islands, Alaska"
+  },
+  {
+    "name": "Kahoolawe",
+    "country": "United States",
+    "etc": "Hawaiian Islands"
+  },
+  {
+    "name": "Kakawaie",
+    "country": "Canada",
+    "etc": "Lake Kagawong, Ontario"
+  },
+  {
+    "name": "Kakeromajima",
+    "country": "Japan",
+    "etc": "Amami Islands part of the Satsunan Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kakrasaar",
+    "country": "Estonia"
+  },
+  {
+    "name": "Kalamos",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Kalolimnos",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Kalpeni",
+    "country": "India",
+    "etc": "Lakshadweep"
+  },
+  {
+    "name": "Kalymnos",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Kållandsö",
+    "country": "Sweden",
+    "etc": "Vänern lake"
+  },
+  {
+    "name": "Kalsoy",
+    "country": "Denmark",
+    "etc": "Faroe Islands"
+  },
+  {
+    "name": "Kamenka",
+    "country": "Russia",
+    "etc": "Kolyma Bay"
+  },
+  {
+    "name": "Kanaga",
+    "country": "United States",
+    "etc": "Andreanof Islands group of the Aleutian Islands, Alaska"
+  },
+  {
+    "name": "Kapingamarangi",
+    "country": "Federated States of Micronesia"
+  },
+  {
+    "name": "Kapiti",
+    "country": "New Zealand"
+  },
+  {
+    "name": "Kapussaar",
+    "country": "Estonia"
+  },
+  {
+    "name": "Karaginsky",
+    "country": "Russia",
+    "etc": "Bering Sea Group"
+  },
+  {
+    "name": "Kardiotissa",
+    "country": "Greece",
+    "etc": "Cyclades Islands"
+  },
+  {
+    "name": "Karkarpko",
+    "country": "Russia",
+    "etc": "Chukchi Sea Group"
+  },
+  {
+    "name": "Karmøy",
+    "country": "Norway"
+  },
+  {
+    "name": "Kárpathos",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Karsibór",
+    "country": "Poland",
+    "etc": "Oder Lagoon islands"
+  },
+  {
+    "name": "Kásos",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Kastellórizo",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Kastos",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Kat O",
+    "country": "China",
+    "etc": "Hong Kong"
+  },
+  {
+    "name": "Katič",
+    "country": "Montenegro",
+    "etc": "Adriatic Sea"
+  },
+  {
+    "name": "Kau Sai Chau",
+    "country": "China",
+    "etc": "Hong Kong"
+  },
+  {
+    "name": "Kauai",
+    "country": "United States",
+    "etc": "Hawaiian Islands"
+  },
+  {
+    "name": "Kaukura",
+    "country": "France",
+    "etc": "Palliser Islands, Tuamotus, French Polynesia"
+  },
+  {
+    "name": "Kaʻula",
+    "country": "United States",
+    "etc": "Hawaiian Islands"
+  },
+  {
+    "name": "Kavaratti",
+    "country": "India",
+    "etc": "Lakshadweep"
+  },
+  {
+    "name": "Kayak",
+    "country": "United States",
+    "etc": "Gulf of Alaska, Alaska"
+  },
+  {
+    "name": "Kea",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Keewaydin",
+    "country": "United States",
+    "etc": "Florida"
+  },
+  {
+    "name": "Kefalonia",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Kelleys",
+    "country": "United States",
+    "etc": "Lake Erie, Ohio"
+  },
+  {
+    "name": "Keppel",
+    "country": "United Kingdom",
+    "etc": "Falkland Islands"
+  },
+  {
+    "name": "Keros",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Kerrera",
+    "country": "Scotland",
+    "etc": "Inner Hebrides"
+  },
+  {
+    "name": "Keskmine Vaika",
+    "country": "Estonia",
+    "etc": "Vaika Islands"
+  },
+  {
+    "name": "Kesselaid",
+    "country": "Estonia"
+  },
+  {
+    "name": "Keswick Island",
+    "country": "Australia",
+    "etc": "Queensland"
+  },
+  {
+    "name": "Key Biscayne",
+    "country": "United States",
+    "etc": "Biscayne Bay, Florida"
+  },
+  {
+    "name": "Key Haven",
+    "country": "United States",
+    "etc": "Florida Keys, Florida"
+  },
+  {
+    "name": "Key Largo",
+    "country": "United States",
+    "etc": "Florida Keys, Florida"
+  },
+  {
+    "name": "Key West",
+    "country": "United States",
+    "etc": "Florida Keys, Florida"
+  },
+  {
+    "name": "Key Vaca",
+    "country": "United States",
+    "etc": "Florida Keys, Florida"
+  },
+  {
+    "name": "Khalki",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Kharg",
+    "country": "Iran",
+    "etc": "Persian Gulf"
+  },
+  {
+    "name": "Khvostof",
+    "country": "United States",
+    "etc": "Rat Islands group of the Aleutian Islands, Alaska"
+  },
+  {
+    "name": "Kigigak",
+    "country": "United States",
+    "etc": "Ninglick River, Alaska"
+  },
+  {
+    "name": "Kihnu",
+    "country": "Estonia",
+    "etc": "Gulf of Riga"
+  },
+  {
+    "name": "Kikaigashima",
+    "country": "Japan",
+    "etc": "Amami Islands part of the Satsunan Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kili",
+    "country": "Marshall Islands",
+    "etc": "Ralik Chain"
+  },
+  {
+    "name": "Kili Holm",
+    "country": "Scotland",
+    "etc": "The North Isles, Orkney Islands"
+  },
+  {
+    "name": "Killisnoo",
+    "country": "United States",
+    "etc": "Alexander Archipelago, Alaska"
+  },
+  {
+    "name": "Kiltan",
+    "country": "India",
+    "etc": "Lakshadweep"
+  },
+  {
+    "name": "Kimolos",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Kinaros",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "King",
+    "country": "Canada",
+    "etc": "British Columbia"
+  },
+  {
+    "name": "King",
+    "country": "United States",
+    "etc": "Bering Sea, Alaska"
+  },
+  {
+    "name": "King",
+    "country": "Australia",
+    "etc": "Bass Strait, Tasmania"
+  },
+  {
+    "name": "King George",
+    "country": "Antarctica",
+    "etc": "South Shetland Islands"
+  },
+  {
+    "name": "King",
+    "country": "United States",
+    "etc": "Allegheny River, Pennsylvania"
+  },
+  {
+    "name": "King's",
+    "country": "Ireland",
+    "etc": "River Shannon"
+  },
+  {
+    "name": "King William",
+    "country": "Canada",
+    "etc": "Nunavut"
+  },
+  {
+    "name": "Kinmen (Quemoy)",
+    "country": "Republic of China",
+    "etc": "Kinmen County"
+  },
+  {
+    "name": "Kiritimati",
+    "country": "Kiribati",
+    "etc": "Line Islands"
+  },
+  {
+    "name": "Kis-Tisza-sziget",
+    "country": "Hungary",
+    "etc": "Tisza"
+  },
+  {
+    "name": "Kish",
+    "country": "Iran",
+    "etc": "Persian Gulf"
+  },
+  {
+    "name": "Kiska",
+    "country": "United States",
+    "etc": "Rat Islands group of the Aleutian Islands, Alaska"
+  },
+  {
+    "name": "Kita daitō",
+    "country": "Japan",
+    "etc": "Daitō Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kita Kojima",
+    "country": "Japan",
+    "etc": "Senkaku Islands"
+  },
+  {
+    "name": "Kitchener",
+    "country": "Canada",
+    "etc": "Lake Huron, Ontario"
+  },
+  {
+    "name": "Kithnos",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Kızılada",
+    "country": "Turkey",
+    "etc": "Mediterranean Sea"
+  },
+  {
+    "name": "Klein Bonaire",
+    "country": "Kingdom of the Netherlands",
+    "etc": "Netherlands Antilles"
+  },
+  {
+    "name": "Klein Curaçao",
+    "country": "Kingdom of the Netherlands",
+    "etc": "Netherlands Antilles"
+  },
+  {
+    "name": "Klippa",
+    "country": "Estonia",
+    "etc": "Haapsalu Bay"
+  },
+  {
+    "name": "Kloostrisaar",
+    "country": "Estonia",
+    "etc": "Lake Pühajärv"
+  },
+  {
+    "name": "Knarrholmen",
+    "country": "Sweden",
+    "etc": "Southern Gothenburg Archipelago"
+  },
+  {
+    "name": "Knockemdown Key",
+    "country": "United States",
+    "etc": "Florida Keys, Florida"
+  },
+  {
+    "name": "Knox Atoll",
+    "country": "Marshall Islands",
+    "etc": "Ratak Chain"
+  },
+  {
+    "name": "Kobjeltak",
+    "country": "Marshall Islands",
+    "etc": "Arno Atoll"
+  },
+  {
+    "name": "Koch",
+    "country": "Canada",
+    "etc": "Nunavut"
+  },
+  {
+    "name": "Kodakarajima",
+    "country": "Japan",
+    "etc": "Tokara Islands part of the Satsunan Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kodiak",
+    "country": "United States",
+    "etc": "Kodiak Archipelago, Alaska"
+  },
+  {
+    "name": "Koh Dek Koul",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Kong",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Poulo Wai",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Preab",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Pring",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Rong",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Rong Sanloem",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Russei",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Sdach",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Seh",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Tang",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Thmei",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Koh Thonsay",
+    "country": "Cambodia"
+  },
+  {
+    "name": "Kohama",
+    "country": "Japan",
+    "etc": "Yaeyama Islands part of the Sakishima Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kőhidi-sziget",
+    "country": "Hungary"
+  },
+  {
+    "name": "Kõinastu laid",
+    "country": "Estonia",
+    "etc": "Väinameri Sea"
+  },
+  {
+    "name": "Koipsi",
+    "country": "Estonia",
+    "etc": "Kolga Bay"
+  },
+  {
+    "name": "Kolmenasva",
+    "country": "Estonia",
+    "etc": "Matsalu Bay"
+  },
+  {
+    "name": "Koločep",
+    "country": "Croatia",
+    "etc": "Elafit islands"
+  },
+  {
+    "name": "Koltur",
+    "country": "Denmark",
+    "etc": "Faroe Islands"
+  },
+  {
+    "name": "Korčula",
+    "country": "Croatia",
+    "etc": "Central Dalmatian Archipelago, Adriatic Sea"
+  },
+  {
+    "name": "Kõrksaar",
+    "country": "Estonia",
+    "etc": "Gulf of Riga"
+  },
+  {
+    "name": "Kornati",
+    "country": "Croatia",
+    "etc": "Kornati archipelago"
+  },
+  {
+    "name": "Korom-sziget",
+    "country": "Hungary",
+    "etc": "Tisza"
+  },
+  {
+    "name": "Kós",
+    "country": "Greece",
+    "etc": "Dodecanese"
+  },
+  {
+    "name": "Koster Islands",
+    "country": "Sweden"
+  },
+  {
+    "name": "Kotlin",
+    "country": "Russia"
+  },
+  {
+    "name": "Koufonisi",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Kowloon Rock",
+    "country": "China",
+    "etc": "Hong Kong"
+  },
+  {
+    "name": "Koyama",
+    "country": "Somalia",
+    "etc": "Bajuni Islands"
+  },
+  {
+    "name": "Kozloduy",
+    "country": "Bulgaria",
+    "etc": "Danube River"
+  },
+  {
+    "name": "Kōzu-shima",
+    "country": "Japan",
+    "etc": "Izu Islands"
+  },
+  {
+    "name": "Kräsuli",
+    "country": "Estonia",
+    "etc": "Tallinn Bay"
+  },
+  {
+    "name": "Kreenholm",
+    "country": "Estonia",
+    "etc": "Narva River"
+  },
+  {
+    "name": "Krk",
+    "country": "Croatia"
+  },
+  {
+    "name": "Krenitzin",
+    "country": "United States",
+    "etc": "Fox Islands group of the Aleutian Islands, Alaska"
+  },
+  {
+    "name": "Kruzof",
+    "country": "United States",
+    "etc": "Alexander Archipelago, Alaska"
+  },
+  {
+    "name": "Ksamil Islands",
+    "country": "Albania",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Kuba-jima",
+    "country": "Japan",
+    "etc": "Senkaku Islands"
+  },
+  {
+    "name": "Kubbar",
+    "country": "Kuwait",
+    "etc": "Persian Gulf"
+  },
+  {
+    "name": "Kuchinoshima",
+    "country": "Japan",
+    "etc": "Tokara Islands part of the Satsunan Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kugong",
+    "country": "Canada",
+    "etc": "Belcher Islands, Nunavut"
+  },
+  {
+    "name": "Kuiu",
+    "country": "United States",
+    "etc": "Alexander Archipelago, Alaska"
+  },
+  {
+    "name": "Kumbli",
+    "country": "Estonia",
+    "etc": "Tallinn Bay"
+  },
+  {
+    "name": "Kumejima",
+    "country": "Japan",
+    "etc": "Okinawa Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kunoy",
+    "country": "Denmark",
+    "etc": "Faroe Islands"
+  },
+  {
+    "name": "Kuper",
+    "country": "Canada",
+    "etc": "Gulf Islands, British Columbia"
+  },
+  {
+    "name": "Kupreanof",
+    "country": "United States",
+    "etc": "Alexander Archipelago, Alaska"
+  },
+  {
+    "name": "Kurima",
+    "country": "Japan",
+    "etc": "Miyako Islands part of the Sakishima Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kuroshima",
+    "country": "Japan",
+    "etc": "Yaeyama Islands part of the Sakishima Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Kuruvadweep",
+    "country": "India",
+    "etc": "Kabini River, Kerala"
+  },
+  {
+    "name": "Kura Rock",
+    "country": "Azerbaijan",
+    "etc": "Aran Region"
+  },
+  {
+    "name": "Kuusisto",
+    "country": "Finland"
+  },
+  {
+    "name": "Kvaløya",
+    "country": "Norway"
+  },
+  {
+    "name": "Kvitsøy",
+    "country": "Norway",
+    "etc": "Kvitsøy islands, Rogaland"
+  },
+  {
+    "name": "Kvitøya",
+    "country": "Norway",
+    "etc": "Svalbard"
+  },
+  {
+    "name": "Kwajalein",
+    "country": "Marshall Islands",
+    "etc": "Ralik Chain"
+  },
+  {
+    "name": "Kyra Panagia",
+    "country": "Greece",
+    "etc": "Sporades"
+  },
+  {
+    "name": "Kythira",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Kythnos",
+    "country": "Greece",
+    "etc": "Cyclades"
+  },
+  {
+    "name": "Oahu",
+    "country": "United States",
+    "etc": "Hawaii"
+  },
+  {
+    "name": "Oak",
+    "country": "Canada",
+    "etc": "Georgian Bay (Parry Sound) Ontario"
+  },
+  {
+    "name": "Óbudai-sziget",
+    "country": "Hungary",
+    "etc": "Danube River"
+  },
+  {
+    "name": "Obstruction",
+    "country": "United States",
+    "etc": "San Juan Islands, Washington"
+  },
+  {
+    "name": "Ocracoke",
+    "country": "United States",
+    "etc": "North Carolina"
+  },
+  {
+    "name": "Oeno",
+    "country": "British overseas territories",
+    "etc": "Pitcairn Islands"
+  },
+  {
+    "name": "Ogami",
+    "country": "Japan",
+    "etc": "Miyako Islands part of the Sakishima Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Oinousses",
+    "country": "Greece"
+  },
+  {
+    "name": "Oki daitō",
+    "country": "Japan",
+    "etc": "Daitō Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Okinawa",
+    "country": "Japan",
+    "etc": "Okinawa Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Okinoerabujima",
+    "country": "Japan",
+    "etc": "Amami Islands part of the Satsunan Islands part of the Ryukyu Islands"
+  },
+  {
+    "name": "Oland",
+    "country": "Germany",
+    "etc": "North Frisian Islands"
+  },
+  {
+    "name": "Öland",
+    "country": "Sweden"
+  },
+  {
+    "name": "Oleron",
+    "country": "France"
+  },
+  {
+    "name": "Olib",
+    "country": "Croatia",
+    "etc": "Northern Dalmatia"
+  },
+  {
+    "name": "Ombo",
+    "country": "Norway",
+    "etc": "Ryfylke Islands, Rogaland"
+  },
+  {
+    "name": "Omelek",
+    "country": "Marshall Islands",
+    "etc": "Kwajalein Atoll, Ralik Chain"
+  },
+  {
+    "name": "Omø",
+    "country": "Denmark",
+    "etc": "Great Belt"
+  },
+  {
+    "name": "Ono",
+    "country": "United States",
+    "etc": "Perdito River, Alabama"
+  },
+  {
+    "name": "Ontong Java",
+    "country": "Solomon Islands",
+    "etc": "Solomon Islands"
+  },
+  {
+    "name": "Orcas",
+    "country": "United States",
+    "etc": "San Juan Islands, Washington"
+  },
+  {
+    "name": "Öreg-sziget",
+    "country": "Hungary",
+    "etc": "Danube River"
+  },
+  {
+    "name": "Orfasay",
+    "country": "Scotland",
+    "etc": "Shetland Islands"
+  },
+  {
+    "name": "Oronsay",
+    "country": "Scotland",
+    "etc": "Inner Hebrides"
+  },
+  {
+    "name": "Orust",
+    "country": "Sweden"
+  },
+  {
+    "name": "Izu Ōshima",
+    "country": "Japan",
+    "etc": "Izu Islands"
+  },
+  {
+    "name": "Osmussaar",
+    "country": "Estonia",
+    "etc": "Gulf of Finland"
+  },
+  {
+    "name": "Ostrów",
+    "country": "Poland",
+    "etc": "Islands of Gdańsk"
+  },
+  {
+    "name": "Othonoi",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Out Stack",
+    "country": "Scotland",
+    "etc": "Shetland Islands"
+  },
+  {
+    "name": "Ovau",
+    "country": "Solomon Islands",
+    "etc": "Shortland Islands"
+  },
+  {
+    "name": "Oxeia",
+    "country": "Greece",
+    "etc": "Ionian Islands"
+  },
+  {
+    "name": "Oxna",
+    "country": "Scotland",
+    "etc": "Shetland Islands"
+  },
+  {
+    "name": "Oyster Rock",
+    "country": "India",
+    "etc": "Maharashtra"
+  },
+  {
+    "name": "Qallunaat",
+    "country": "Denmark",
+    "etc": "Upernavik Archipelago"
+  },
+  {
+    "name": "Qaruh",
+    "country": "Kuwait",
+    "etc": "Persian Gulf"
+  },
+  {
+    "name": "Qelelevu",
+    "country": "Fiji",
+    "etc": "Ringgold Isles"
+  },
+  {
+    "name": "Qeshm",
+    "country": "Iran",
+    "etc": "Persian Gulf"
+  },
+  {
+    "name": "Quadra",
+    "country": "Canada",
+    "etc": "Discovery Islands, British Columbia"
+  },
+  {
+    "name": "Quail",
+    "country": "New Zealand",
+    "etc": "Lyttelton Harbour"
+  },
+  {
+    "name": "Quarry",
+    "country": "Canada",
+    "etc": "Severn Sound Ontario"
+  },
+  {
+    "name": "Query",
+    "etc": "Mikkelsen Bay, Antarctica"
+  },
+  {
+    "name": "Quoin",
+    "country": "Australia",
+    "etc": "Torres Strait Islands, Queensland"
+  }
+]
