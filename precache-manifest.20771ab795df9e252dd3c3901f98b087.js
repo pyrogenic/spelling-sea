@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "41e02d154575a3d2dd5fd5f6b1aa22dd",
+    "revision": "f67fa4f4f8d4c8ecb340cd0a7356712d",
     "url": "/spelling-sea/index.html"
   },
   {
-    "revision": "1bc2778a3e1048f60d8e",
-    "url": "/spelling-sea/static/css/main.6633c8a4.chunk.css"
+    "revision": "6c45f4c168cd51523e80",
+    "url": "/spelling-sea/static/css/main.ff78d3b5.chunk.css"
   },
   {
-    "revision": "24eacacc2006bc0575cc",
-    "url": "/spelling-sea/static/js/2.b4977b98.chunk.js"
+    "revision": "f80435b3dd565bce432a",
+    "url": "/spelling-sea/static/js/2.568ae869.chunk.js"
   },
   {
     "revision": "c836aaadfe43dfd9fcb8ddeddfd61e18",
-    "url": "/spelling-sea/static/js/2.b4977b98.chunk.js.LICENSE.txt"
+    "url": "/spelling-sea/static/js/2.568ae869.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1bc2778a3e1048f60d8e",
-    "url": "/spelling-sea/static/js/main.c31b9a07.chunk.js"
+    "revision": "6c45f4c168cd51523e80",
+    "url": "/spelling-sea/static/js/main.6dac3ed4.chunk.js"
   },
   {
     "revision": "0a36257cc9b80bcfad00",
