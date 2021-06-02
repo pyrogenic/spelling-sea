@@ -1,4 +1,5 @@
 import React from "react";
+import useLocalState from "@pyrogenic/perl/lib/useLocalState";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -6,7 +7,6 @@ import Row from "react-bootstrap/Row";
 import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
-import useSessionState from "./useSessionState";
 import _ from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -24,16 +24,16 @@ type PuzzleId = string;
 
 function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
-  const [puzzle, setPuzzle, initPuzzle] = useSessionState<Puzzle | undefined>(["puzzle"], undefined);
-  const [visitedPuzzles, setVisitedPuzzles, initVisitedPuzzles] = useSessionState<PuzzleId[]>(["visitedPuzzleIds"], []);
+  const [puzzle, setPuzzle] = useLocalState<Puzzle | undefined>("puzzle", undefined);
+  const [visitedPuzzles, setVisitedPuzzles] = useLocalState<PuzzleId[]>("visitedPuzzleIds", []);
   const getPuzzlesOnce = React.useRef({ done: false });
-  const once = React.useRef({ firstRun: true });
+  // const once = React.useRef({ firstRun: true });
   
-  if (once.current.firstRun) {
-    once.current.firstRun = false;
-    initPuzzle();
-    initVisitedPuzzles();
-  }
+  // if (once.current.firstRun) {
+  //   once.current.firstRun = false;
+  //   initPuzzle();
+  //   initVisitedPuzzles();
+  // }
 
   React.useEffect(() => {
     if (puzzle) {
@@ -95,25 +95,25 @@ function App() {
 function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; prevPuzzle: () => void; nextPuzzle: () => void; }) {
   // per-puzzle
   const id = puzzleId(puzzle);
-  const [board, setBoard, initBoard] = useSessionState<string[]>([id, "board"], []);
-  const [rack, setRack, initRack] = useSessionState<string[]>([id, "rack"], []);
+  const [board, setBoard, initBoard] = useLocalState<string[]>([id, "board"], []);
+  const [rack, setRack, initRack] = useLocalState<string[]>([id, "rack"], []);
   const [shuffle, setShuffle] = React.useState(0);
-  const [words, setWords, initWords] = useSessionState<string[]>([id, "words"], []);
-  const [fails, setFails, initFails] = useSessionState<string[]>([id, "fails"], []);
+  const [words, setWords, initWords] = useLocalState<string[]>([id, "words"], []);
+  const [fails, setFails, initFails] = useLocalState<string[]>([id, "fails"], []);
 
   // global
-  const [order, setOrder, initOrder] = useSessionState<Order>(["order"], "found");
-  const [progressView, setProgressView, initProgressView] = useSessionState<Progress>(["progress"], "overall");
+  const [order, setOrder, initOrder] = useLocalState<Order>(["order"], "found");
+  const [progressView, setProgressView, initProgressView] = useLocalState<Progress>(["progress"], "overall");
 
-  const skipResetOnRestore = React.useRef({ done: false });
-  React.useEffect(() => {
-    initBoard();
-    initRack();
-    initWords();
-    initFails();
-    initOrder();
-    initProgressView();
-  }, [id]);
+  // const skipResetOnRestore = React.useRef({ done: false });
+  // React.useEffect(() => {
+  //   initBoard();
+  //   initRack();
+  //   initWords();
+  //   initFails();
+  //   initOrder();
+  //   initProgressView();
+  // }, [id]);
 
   function onKeyPress(event: KeyboardEvent) {
     const { key, code } = event;
@@ -250,7 +250,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       <Col xs={"auto"}>
         <Row>
           <span className="rack-letter">&nbsp;</span>
-          {rack.map((letter, i) => <span className={`rack-letter ${letter === puzzle.island ? "rack-letter-island" : ""}`} onClick={(e) => {
+          {rack.map((letter, i) => <span key={i} className={`rack-letter ${letter === puzzle.island ? "rack-letter-island" : ""}`} onClick={(e) => {
             rack.splice(i, 1);
             setRack([...rack]);
           }}>{letter}</span>)}
@@ -396,7 +396,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
         remain = from - 1;
         const playerRank = (from <= playerScore && playerScore <= to);
         const achieved = from < playerScore;
-        return <Row className={playerRank ? "rank-current" : achieved ? "rank-past" : "rank-future"}>
+        return <Row key={index} className={playerRank ? "rank-current" : achieved ? "rank-past" : "rank-future"}>
           <Col>{from}</Col>
           <Col>{playerRank ? playerScore : ""}</Col>
           <Col>{to}</Col>
