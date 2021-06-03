@@ -14,6 +14,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft, FiPower, FiHeart } from "react-icons/fi";
 import InputGroup from "react-bootstrap/esm/InputGroup";
+import "@pyrogenic/perl/src/cobbler.css";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
@@ -31,7 +32,7 @@ function App() {
   const [favoritePuzzles, setFavoritePuzzles] = useLocalState<PuzzleId[]>("favoritePuzzleIds", []);
   const getPuzzlesOnce = React.useRef({ done: false });
   // const once = React.useRef({ firstRun: true });
-  
+
   // if (once.current.firstRun) {
   //   once.current.firstRun = false;
   //   initPuzzle();
@@ -163,6 +164,13 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reset]);
 
+  React.useEffect(() => {
+    if (puzzle === undefined) {
+      shuffleBoard();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [puzzle]);
+
   function onKeyPress(event: KeyboardEvent) {
     const { key, code } = event;
     switch (code) {
@@ -213,8 +221,11 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
   }
 
   function ditto() {
-    const newRack = [..._.last(words)!];
-    setRack(newRack);
+    const lastWord = _.last(words);
+    if (lastWord) {
+      const newRack = [...lastWord];
+      setRack(newRack);
+    }
   }
 
   React.useEffect(() => {

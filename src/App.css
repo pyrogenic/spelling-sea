@@ -60,10 +60,11 @@ div {
 
 .sea {
     /* outline: 1px solid red; */
-    height: 1em;
-    width: 1.5em;
-    margin-left: -0.25em;
-    margin-right: -0.25em;
+    height: 5rem;
+    width: 5rem;
+    padding: 0;
+    margin: 1rem;
+    line-height: 80%;
     overflow: visible;
 }
 
@@ -159,3 +160,8 @@ div {
 .word-list.found {
     column-fill: balance;
 }
+/* 
+.input-group-append:not(:first-child) .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+} */
