@@ -95,15 +95,14 @@ function App() {
       </Col>
       <Col>
         <DropdownButton title="In-Progress">
-          {Object.entries(puzzles).map(([, group], groupIndex) =>
-            group.map((e) => {
+            {_.compact(visitedPuzzles.map(puzzleById)).map((e) => {
               const { board, island, words } = e;
               return <Dropdown.Item
-                key={`${groupIndex}.${island}`}
+                key={puzzleId(e)}
                 onSelect={setPuzzle.bind(null, e)}>
                 {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
             </Dropdown.Item>;
-            }))}
+            })}
         </DropdownButton>
       </Col>
       <Col>
@@ -166,7 +165,6 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
 
   function onKeyPress(event: KeyboardEvent) {
     const { key, code } = event;
-    console.log(event);
     switch (code) {
       case "Escape":
         setRack([]);
