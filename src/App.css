@@ -15,6 +15,8 @@
 */
 .fixed {
     position: fixed;
+    width: 100%;
+    padding: 4vh;
 }
 
 div {
@@ -24,13 +26,13 @@ div {
 .rack-letter {
     font-size: 6em;
     text-transform: uppercase;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 900;
 }
 
 .board {
     touch-action: none;
-    
+
     /* border: 1px solid black; */
     border-radius: 50%;
     background: url("isle.jpg");
@@ -39,12 +41,13 @@ div {
     font-size: 6rem;
     color: white;
     text-transform: uppercase;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 400;
     text-align: center;
     line-height: 1;
 
-    text-shadow: 3px 3px 0 #093161, 3px -3px 0 #4074b5, -3px 3px 0 #4074b5, -3px -3px 0 #4074b5, 3px 0px 0 #4074b5, 0px 3px 0 #4074b5, -3px 0px 0 #4074b5, 0px -3px 0 #4074b5;
+    text-shadow: 3px 3px 0 #093161, 3px -3px 0 #4074b5, -3px 3px 0 #4074b5, -3px -3px 0 #4074b5, 3px 0px 0 #4074b5,
+        0px 3px 0 #4074b5, -3px 0px 0 #4074b5, 0px -3px 0 #4074b5;
 }
 
 .board > * {
@@ -66,7 +69,8 @@ div {
 
 .rack-letter-island {
     color: gold;
-    text-shadow: 3px 3px 0 #093161, 3px -3px 0 #4074b5, -3px 3px 0 #4074b5, -3px -3px 0 #4074b5, 3px 0px 0 #4074b5, 0px 3px 0 #4074b5, -3px 0px 0 #4074b5, 0px -3px 0 #4074b5;
+    text-shadow: 3px 3px 0 #093161, 3px -3px 0 #4074b5, -3px 3px 0 #4074b5, -3px -3px 0 #4074b5, 3px 0px 0 #4074b5,
+        0px 3px 0 #4074b5, -3px 0px 0 #4074b5, 0px -3px 0 #4074b5;
     font-weight: 900;
 }
 
@@ -82,23 +86,23 @@ div {
 }
 
 .rank-future {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 300;
 }
 
 .rank-current {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 900;
 }
 
 .rank-past {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 300;
     color: #00000080;
 }
 
 .score {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 900;
 }
 
@@ -120,7 +124,6 @@ div {
     color: #00000080;
 }
 
-
 .marker-found {
     background-color: green;
 }
@@ -132,11 +135,11 @@ div {
 }
 
 .board-row-1 > .col:nth-of-type(1),
-.board-row-1 > .col:nth-of-type(3)  {
+.board-row-1 > .col:nth-of-type(3) {
     transform: translateY(33%);
 }
 .board-row-3 > .col:nth-of-type(1),
-.board-row-3 > .col:nth-of-type(3)  {
+.board-row-3 > .col:nth-of-type(3) {
     transform: translateY(-33%);
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import useLocalState from "@pyrogenic/perl/lib/useLocalState";
-import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -11,7 +10,7 @@ import _ from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
+import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft, FiPower } from "react-icons/fi";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
@@ -72,7 +71,7 @@ function App() {
     setPuzzle(_.shuffle(allPuzzles()).pop());
   }
 
-  return <Container><div className="fixed">
+  return <div className="fixed">
     {puzzle && <PuzzleComponent puzzle={puzzle} prevPuzzle={prevPuzzle} nextPuzzle={nextPuzzle} />}
     <hr />
     <Row>
@@ -88,32 +87,33 @@ function App() {
           }))}
       </DropdownButton>
     </Row>
-  </div>
-  </Container>;
+  </div>;
 }
 
 function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; prevPuzzle: () => void; nextPuzzle: () => void; }) {
   // per-puzzle
   const id = puzzleId(puzzle);
-  const [board, setBoard, initBoard] = useLocalState<string[]>([id, "board"], []);
+  const [board, setBoard] = useLocalState<string[]>([id, "board"], []);
   const [rack, setRack, initRack] = useLocalState<string[]>([id, "rack"], []);
-  const [shuffle, setShuffle] = React.useState(0);
   const [words, setWords, initWords] = useLocalState<string[]>([id, "words"], []);
   const [fails, setFails, initFails] = useLocalState<string[]>([id, "fails"], []);
+  const [shuffle, setShuffle] = React.useState(0);
+  const [reset, setReset] = React.useState(0);
 
   // global
-  const [order, setOrder, initOrder] = useLocalState<Order>(["order"], "found");
-  const [progressView, setProgressView, initProgressView] = useLocalState<Progress>(["progress"], "overall");
+  const [order, setOrder] = useLocalState<Order>(["order"], "found");
+  const [progressView, setProgressView] = useLocalState<Progress>(["progress"], "overall");
 
-  // const skipResetOnRestore = React.useRef({ done: false });
-  // React.useEffect(() => {
-  //   initBoard();
-  //   initRack();
-  //   initWords();
-  //   initFails();
-  //   initOrder();
-  //   initProgressView();
-  // }, [id]);
+  const firstRun = React.useRef(reset);
+  React.useEffect(() => {
+    if (firstRun.current !== reset){
+      firstRun.current = reset;
+      initRack();
+      initWords();
+      initFails();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reset]);
 
   function onKeyPress(event: KeyboardEvent) {
     const { key, code } = event;
@@ -194,17 +194,23 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
     setBoard(result);
   }
 
-  React.useEffect(shuffleBoard, [puzzle, shuffle]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(shuffleBoard, [shuffle]);
 
-  const orderedWords = React.useCallback(() => {
+  type OrderedWords = Array<[group: string | number | undefined, words: string[]]>;
+
+  const orderedWords: OrderedWords = React.useMemo(() => {
     switch (order) {
       case "found":
-        return words;
-      case "alpha":
-        return [...words].sort();
-      // case "length":
-      //   const groups = Object.entries(_.groupBy([...words].sort(), "length"));
-      //   return _.map(groups.sort(), "", 
+        return [[undefined, words]] as Array<[undefined, string[]]>;
+      case "alpha": {
+        const groups: Array<[string, string[]]> = Object.entries(_.groupBy([...words].sort(), "0"));
+        return groups.sort(([a], [b]) => a.localeCompare(b));
+      }
+      case "length":{
+        const groups: Array<[number, string[]]> = Object.entries(_.groupBy([...words].sort(), "length")).map(([a, b]) => [Number(a), b]);
+        return groups.sort(([a], [b]) => a-b);
+      }
     }
   }, [words, order]);
 
@@ -244,7 +250,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
     }
   }
 
-  return <Container onMouseDown={(e: any) => e.preventDefault()}>
+  return <div onMouseDown={(e: any) => e.preventDefault()}>
     <Row className="mb-2">
       <Col xs={"auto"} className="flex-fill"  onClick={backspace}/>
       <Col xs={"auto"}>
@@ -278,6 +284,9 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
             </Row>
             <Row>
               <Col xs="auto" className="flex-fill">
+              <Button size="sm" variant="light" onClick={() => window.confirm("Reset?") && setReset(reset + 1)}>
+                  <FiPower title="Reset" />
+                </Button>
                 <Button size="sm" variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>
                   <FiShuffle title="Shuffle" />
                 </Button>
@@ -323,7 +332,9 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
         </Row>
 
         <Row className="word-list">
-          {orderedWords?.()?.map((word) => {
+          {orderedWords.map(([group, words]) => <>
+          {group !== undefined && <b>{group}</b>}
+          {words.map((word) => {
             let className = globetrotter(word) ? "globetrotter" : undefined;
             if (rack.length > 0) {
               const rackWord = rack.join("");
@@ -338,7 +349,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
               }
             }
             return <div key={word} className={className}>{word}</div>;
-          })}
+          })}</>)}
         </Row>
       </Col>
 
@@ -368,7 +379,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       </Col>
 
     </Row>}
-  </Container>;
+  </div>;
 
   function OverallProgress() {
     if (!puzzle) {
