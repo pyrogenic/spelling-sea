@@ -1,4 +1,5 @@
 import React from "react";
+import {arraySetToggle} from "@pyrogenic/asset/lib/arraySetToggle";
 import useLocalState from "@pyrogenic/perl/lib/useLocalState";
 import classConcat from "@pyrogenic/perl/lib/classConcat";
 import Button from "react-bootstrap/Button";
@@ -11,7 +12,8 @@ import _ from "lodash";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft, FiPower } from "react-icons/fi";
+import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft, FiPower, FiHeart } from "react-icons/fi";
+import InputGroup from "react-bootstrap/esm/InputGroup";
 
 type Order = "found" | "alpha" | "length";
 const ORDERS: Order[] = ["found", "alpha", "length"];
@@ -26,6 +28,7 @@ function App() {
   const [puzzles, setPuzzles] = React.useState<Puzzles>({});
   const [puzzle, setPuzzle] = useLocalState<Puzzle | undefined>("puzzle", undefined);
   const [visitedPuzzles, setVisitedPuzzles] = useLocalState<PuzzleId[]>("visitedPuzzleIds", []);
+  const [favoritePuzzles, setFavoritePuzzles] = useLocalState<PuzzleId[]>("favoritePuzzleIds", []);
   const getPuzzlesOnce = React.useRef({ done: false });
   // const once = React.useRef({ firstRun: true });
   
@@ -65,30 +68,75 @@ function App() {
       const puzzleIndex = visitedPuzzles.indexOf(puzzleId(puzzle));
       if (puzzleIndex > 0) {
         const id = visitedPuzzles[puzzleIndex - 1];
-        const found = allPuzzles().find((p) => id === puzzleId(p));
+        const found = puzzleById(id);
         return setPuzzle(found);
       }
     }
     setPuzzle(_.shuffle(allPuzzles()).pop());
   }
 
+  const asc = {favoritePuzzles};
   return <div className="fixed">
     {puzzle && <PuzzleComponent puzzle={puzzle} prevPuzzle={prevPuzzle} nextPuzzle={nextPuzzle} />}
     <hr />
     <Row>
-      <DropdownButton title="Choose a Puzzle">
-        {Object.entries(puzzles).map(([, group], groupIndex) =>
-          group.map((e) => {
+    <Col>
+        <DropdownButton title="All Puzzles">
+          {Object.entries(puzzles).map(([, group], groupIndex) =>
+            group.map((e) => {
+              const { board, island, words } = e;
+              return <Dropdown.Item
+                key={`${groupIndex}.${island}`}
+                onSelect={setPuzzle.bind(null, e)}>
+                {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
+            </Dropdown.Item>;
+            }))}
+        </DropdownButton>
+      </Col>
+      <Col>
+        <DropdownButton title="In-Progress">
+          {Object.entries(puzzles).map(([, group], groupIndex) =>
+            group.map((e) => {
+              const { board, island, words } = e;
+              return <Dropdown.Item
+                key={`${groupIndex}.${island}`}
+                onSelect={setPuzzle.bind(null, e)}>
+                {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
+            </Dropdown.Item>;
+            }))}
+        </DropdownButton>
+      </Col>
+      <Col>
+      <InputGroup>
+      <InputGroup.Prepend>
+          {puzzle && <Button
+            variant={favoritePuzzles.includes(puzzleId(puzzle)) ? "success" : "outline-dark"}
+            onClick={() => {
+              arraySetToggle(asc, "favoritePuzzles", puzzleId(puzzle));
+              setFavoritePuzzles([...favoritePuzzles]);
+            }}
+            ><FiHeart /></Button>}
+            </InputGroup.Prepend>
+            <InputGroup.Append>
+        <DropdownButton variant="success" title="Favorites">
+          {_.compact(favoritePuzzles.map(puzzleById)).map((e) => {
             const { board, island, words } = e;
             return <Dropdown.Item
-              key={`${groupIndex}.${island}`}
-              onSelect={setPuzzle.bind(null, e)}>
-              {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
-          </Dropdown.Item>;
-          }))}
-      </DropdownButton>
+            key={puzzleId(e)}
+            onSelect={setPuzzle.bind(null, e)}>
+                {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
+            </Dropdown.Item>;
+            })}
+        </DropdownButton>
+            </InputGroup.Append>
+          </InputGroup>
+      </Col>
     </Row>
   </div>;
+
+  function puzzleById(id: string) {
+    return allPuzzles().find((p) => id === puzzleId(p));
+  }
 }
 
 function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; prevPuzzle: () => void; nextPuzzle: () => void; }) {
