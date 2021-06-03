@@ -1,5 +1,6 @@
 import React from "react";
 import useLocalState from "@pyrogenic/perl/lib/useLocalState";
+import classConcat from "@pyrogenic/perl/lib/classConcat";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -195,7 +196,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(shuffleBoard, [shuffle]);
+  React.useEffect(shuffleBoard, [puzzle, shuffle]);
 
   type OrderedWords = Array<[group: string | number | undefined, words: string[]]>;
 
@@ -220,6 +221,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
       return;
     }
   }
+
   const submit = () => {
     const word = rack.join("");
     if (words.includes(word)) {
@@ -331,9 +333,9 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
           <Col xs={"auto"} className="flex-fill" />
         </Row>
 
-        <Row className="word-list">
+        <Row className={classConcat("word-list", order)}>
           {orderedWords.map(([group, words]) => <>
-          {group !== undefined && <b>{group}</b>}
+          {group !== undefined && <div className={classConcat("group", order, group.toString())}>{group}</div>}
           {words.map((word) => {
             let className = globetrotter(word) ? "globetrotter" : undefined;
             if (rack.length > 0) {

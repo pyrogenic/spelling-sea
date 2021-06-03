@@ -119,6 +119,11 @@ div {
     font-weight: 500;
 }
 
+.word-list .group {
+    font-weight: 700;
+    border-bottom: 0.5px grey solid;
+}
+
 .does-not-match-prefix {
     font-weight: 300;
     color: #00000080;
@@ -144,7 +149,13 @@ div {
 }
 
 .word-list {
+    display: block;
     column-count: auto;
     column-width: 6rem;
-    display: block;
+    column-fill: auto;
+    height: 60vh;
+}
+
+.word-list.found {
+    column-fill: balance;
 }
