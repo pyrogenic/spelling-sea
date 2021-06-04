@@ -120,6 +120,11 @@ div {
     font-weight: 500;
 }
 
+.word-list .group:not(:first-child) {
+    /* outline: 1px solid red; */
+    margin-top: 0.5rem;
+}
+
 .word-list .group {
     font-weight: 700;
     border-bottom: 0.5px grey solid;
@@ -160,8 +165,3 @@ div {
 .word-list.found {
     column-fill: balance;
 }
-/* 
-.input-group-append:not(:first-child) .btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-} */
