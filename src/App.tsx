@@ -9,11 +9,11 @@ import Puzzles, { getPuzzles } from "./Puzzles";
 import Puzzle from "./Puzzle";
 import "./App.css";
 import _ from "lodash";
-import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { FiCopy, FiRefreshCw, FiShuffle, FiDelete, FiChevronsRight, FiChevronsLeft, FiPower, FiHeart } from "react-icons/fi";
-import InputGroup from "react-bootstrap/esm/InputGroup";
+import InputGroup from "react-bootstrap/InputGroup";
 import "@pyrogenic/perl/src/cobbler.css";
 
 type Order = "found" | "alpha" | "length";
@@ -110,7 +110,7 @@ function App() {
       <InputGroup>
       <InputGroup.Prepend>
           {puzzle && <Button
-            variant={favoritePuzzles.includes(puzzleId(puzzle)) ? "success" : "outline-dark"}
+              variant={favoritePuzzles.includes(puzzleId(puzzle)) ? "success" : "outline-dark"}
             onClick={() => {
               arraySetToggle(asc, "favoritePuzzles", puzzleId(puzzle));
               setFavoritePuzzles([...favoritePuzzles]);
@@ -118,7 +118,7 @@ function App() {
             ><FiHeart /></Button>}
             </InputGroup.Prepend>
             <InputGroup.Append>
-        <DropdownButton variant="success" title="Favorites">
+            <DropdownButton variant="success" title="Favorites">
           {_.compact(favoritePuzzles.map(puzzleById)).map((e) => {
             const { board, island, words } = e;
             return <Dropdown.Item
@@ -343,7 +343,7 @@ function PuzzleComponent({ puzzle, prevPuzzle, nextPuzzle }: { puzzle: Puzzle; p
             </Row>
             <Row>
               <Col xs="auto" className="flex-fill">
-              <Button size="sm" variant="light" onClick={() => window.confirm("Reset?") && setReset(reset + 1)}>
+                <Button size="sm" variant="light" onClick={() => window.confirm("Reset?") && setReset(reset + 1)}>
                   <FiPower title="Reset" />
                 </Button>
                 <Button size="sm" variant="light" onClick={setShuffle.bind(null, shuffle + 1)}>

@@ -125,6 +125,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+/vendor
+
 resources/EOWL-v1.1.2/*/*
 resources/EOWL-v1.1.2/*/*
 **/tmp/**

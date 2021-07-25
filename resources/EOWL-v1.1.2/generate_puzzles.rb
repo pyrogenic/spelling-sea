@@ -42,8 +42,8 @@ end.freeze
 
 $stderr.puts(words: WORDS_AND_UNIQUE_LETTERS.length, roots: ROOTS.length)
 
-MINIMUM_WORD_COUNT = 40
-MAXIMUM_WORD_COUNT = 100
+MINIMUM_WORD_COUNT = 20
+MAXIMUM_WORD_COUNT = 60
 
 $counts = Set.new
 
