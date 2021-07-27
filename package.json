@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "make": "bundle exec ruby resources/EOWL-v1.1.2/generate_puzzles.rb resources/EOWL-v1.1.2/words.txt > public/puzzles.json",
     "predeploy": "yarn build",
-    "start": "react-scripts start",
+        "start-rs": "react-scripts start",
+        "start": "FORCE_COLOR=true yarn start-rs | cat",
     "test": "react-scripts test"
   },
   "eslintConfig": {
