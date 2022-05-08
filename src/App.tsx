@@ -107,17 +107,14 @@ function App() {
         </DropdownButton>
       </Col>
       <Col>
-      <InputGroup>
-      <InputGroup.Prepend>
+        <InputGroup>
           {puzzle && <Button
               variant={favoritePuzzles.includes(puzzleId(puzzle)) ? "success" : "outline-dark"}
             onClick={() => {
               arraySetToggle(asc, "favoritePuzzles", puzzleId(puzzle));
               setFavoritePuzzles([...favoritePuzzles]);
             }}
-            ><FiHeart /></Button>}
-            </InputGroup.Prepend>
-            <InputGroup.Append>
+          ><FiHeart /></Button>}
             <DropdownButton variant="success" title="Favorites">
           {_.compact(favoritePuzzles.map(puzzleById)).map((e) => {
             const { board, island, words } = e;
@@ -127,8 +124,7 @@ function App() {
                 {island.toUpperCase()}+{board.join("").toUpperCase()} ({words.length} words)
             </Dropdown.Item>;
             })}
-        </DropdownButton>
-            </InputGroup.Append>
+          </DropdownButton>
           </InputGroup>
       </Col>
     </Row>
